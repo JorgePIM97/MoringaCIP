@@ -1,0 +1,98 @@
+# ==========================
+# Archivos del entorno
+# ==========================
+.env
+*.env
+.env.*
+
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*$py.class
+
+# ==========================
+# Entornos virtuales
+# ==========================
+venv/
+env/
+ENV/
+.venv/
+.pyenv/
+.Python
+
+# ==========================
+# Dependencias y compilaciones
+# ==========================
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ==========================
+# Configuración IDE
+# ==========================
+.vscode/
+.idea/
+.spyproject/
+.ropeproject/
+
+# ==========================
+# Tests y reportes
+# ==========================
+.pytest_cache/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# ==========================
+# Logs y temporales
+# ==========================
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# ==========================
+# Frameworks web (Django, Flask, etc.)
+# ==========================
+instance/
+*.db
+*.sqlite3
+*.sqlite
+media/
+staticfiles/
+
+# ==========================
+# Archivos generados
+# ==========================
+*.csv
+*.xlsx
+*.xls
+*.pdf
+*.docx
+
+# ==========================
+# Ejecutables
+# ==========================
+*.exe
+*.bat
+*.sh
+*.ps1
