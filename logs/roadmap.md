@@ -62,3 +62,56 @@ esos datos ajustar la anticipación real de apertura/cierre.
 **Realizar la primera escritura real de un Tag del 1769-L18ER desde
 `test/plc/prueba_plc.py` y observar el cambio en Studio 5000.** Después,
 vincularlo con una salida física y ejecutar la integración de visión.
+
+# MoringaCIP --- Roadmap
+
+**Corte: 22/09/2026**
+
+## Completado
+
+-   Visión YOLO + tracking y lógica izquierda/derecha.
+-   Migración de Modbus a `pycomm3` / CIP/EtherNet/IP.
+-   Red PC ↔ Allen-Bradley 1769-L18ER-BB1B.
+-   Respaldo mediante Upload del proyecto previo.
+-   Proyecto `TestPycomm3`.
+-   Tags `Prueba_Python`, `CMD_Cuchilla_Izquierda` y
+    `CMD_Cuchilla_Derecha`.
+-   Escritura exitosa de los tres Tags desde Python.
+-   Escritura de Tags desde el algoritmo de visión.
+-   Rutina `TEST_PY_OUT` llamada mediante JSR.
+-   `CMD_Cuchilla_Izquierda` → `Local:1:O.Data.0`.
+-   Activación física exitosa de la salida local desde Python.
+
+## Siguiente fase --- Rendimiento
+
+Medir por separado: - tiempo de `model.track()`; - procesamiento
+posterior; - `plc.write()`; - tiempo total por frame; - FPS reales.
+
+Después: - mantener una conexión `LogixDriver` persistente; - evitar
+escrituras redundantes; - revisar threads y `join()`; - comparar
+latencias antes/después.
+
+## Fase posterior --- Dos cuchillas
+
+-   Definir salida física del canal derecho.
+-   Crear Ladder para `CMD_Cuchilla_Derecha`.
+-   Verificar ambos canales independientemente.
+-   Mantener Tags de comando separados de las salidas físicas.
+
+## Antes de pruebas reales
+
+Definir con automatización estado seguro ante pérdida de comunicación,
+habilitación general, interlocks y comportamiento manual/automático que
+corresponda.
+
+## Pruebas dinámicas
+
+Caracterizar FPS, latencia PC→PLC, tiempo del PLC/actuador, velocidad de
+avance y distancia cámara-cuchilla para calibrar anticipación de
+apertura/cierre.
+
+## Próximo hito
+
+Obtener una línea base de `moringa_algoritmo_plc.py` con `T_YOLO`,
+`T_PLC`, tiempo total por frame y FPS; después implementar conexión
+persistente y comparar.

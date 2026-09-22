@@ -8,6 +8,6 @@ with LogixDriver(PLC_IP) as plc:
     print("Conectado al PLC")
 
     # Escribir TRUE
-    respuesta = plc.write("Prueba_Python", True)
+    respuesta = plc.write("CMD_Cuchilla_Izquierda", True)
 
     print("Respuesta:", respuesta)

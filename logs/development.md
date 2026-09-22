@@ -144,3 +144,101 @@ YOLO → tracking → decisión → pycomm3 → Tag PLC → Ladder → salida di
 ```
 
 en ambos lados, respetando abrir para proteger y cerrar para desmalezar.
+
+# MoringaCIP --- Development
+
+**Corte: 22/09/2026**
+
+## Avances desde el último corte
+
+Se configuró y validó la comunicación Ethernet con el Allen-Bradley
+1769-L18ER-BB1B. Durante las pruebas el PLC utilizó `192.168.1.10` y la
+PC `192.168.1.55`. FactoryTalk Linx/Who Active detectó correctamente el
+controlador.
+
+Antes de modificar el controlador se realizó un **Upload** y se guardó
+un respaldo del proyecto existente.
+
+## Studio 5000 y Tags
+
+Se creó el proyecto `TestPycomm3` y se definieron Controller Tags BOOL:
+
+``` text
+Prueba_Python
+CMD_Cuchilla_Izquierda
+CMD_Cuchilla_Derecha
+```
+
+El proyecto fue descargado al PLC y se verificó Online en `Rem Run`, con
+`Controller OK`, `I/O OK` y sin Forces. Los tres Tags fueron escritos
+exitosamente desde Python mediante `pycomm3`.
+
+## Prueba con visión
+
+`moringa_algoritmo_plc.py` ejecutó YOLO/tracking y logró escribir los
+Tags del PLC. La ruta funcional quedó validada:
+
+``` text
+Video → YOLO/tracking → decisión → pycomm3 → Controller Tag
+```
+
+Se observaron latencias elevadas durante esta prueba.
+
+PC utilizada:
+
+``` text
+CPU: Intel Core i5-7200U
+RAM: 6 GB
+GPU: Intel HD Graphics 620
+SSD: Kingston SA400S37480G
+Sistema: x64
+```
+
+## Ladder y salida digital
+
+Se creó la rutina Ladder `TEST_PY_OUT`:
+
+``` text
+CMD_Cuchilla_Izquierda              Local:1:O.Data.0
+---------] [------------------------------( )---------
+          XIC                              OTE
+```
+
+`MainRoutine` ejecuta `TEST_PY_OUT` mediante `JSR`.
+
+Después de descargar la configuración, un script Python escribió
+`CMD_Cuchilla_Izquierda` y activó exitosamente `Local:1:O.Data.0`.
+
+Por tanto quedó validada:
+
+``` text
+Python → pycomm3 → CMD_Cuchilla_Izquierda
+       → JSR TEST_PY_OUT → XIC → OTE
+       → Local:1:O.Data.0 → salida digital física
+```
+
+## Rendimiento: siguiente trabajo
+
+La latencia todavía no debe atribuirse únicamente al hardware. El código
+actual abre `LogixDriver` en cada escritura y espera la finalización de
+threads antes de continuar.
+
+Se medirán:
+
+``` text
+T_YOLO
+T_PROCESAMIENTO
+T_PLC
+T_FRAME_TOTAL
+FPS_REAL
+```
+
+Después se comparará la implementación actual con una conexión
+persistente al PLC.
+
+## Estado actual
+
+La integración funcional **YOLO → decisión → Tag → Ladder → salida
+digital** ya fue demostrada para el canal de prueba izquierdo. El
+siguiente bloque es caracterizar y optimizar latencia antes de
+implementar ambos canales de cuchilla para pruebas dinámicas.

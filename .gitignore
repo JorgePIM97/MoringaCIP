@@ -83,7 +83,6 @@ staticfiles/
 # ==========================
 # Archivos generados
 # ==========================
-*.csv
 *.xlsx
 *.xls
 *.pdf

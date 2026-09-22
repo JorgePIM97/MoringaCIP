@@ -1,0 +1,12 @@
+﻿fecha,sesion,fase,paso,tipo,descripcion,archivos_clave,tests_nuevos
+2026-09-18,06,Documentación,10,Documentación,Último corte documental previo a las pruebas reales con el PLC.,logs/dev_log.csv; logs/development.md; logs/roadmap.md,Revisión documental
+2026-09-21,07,Puesta en marcha PLC,11,Configuración,Studio 5000 operativo. Red PC/PLC configurada; PLC 1769-L18ER-BB1B accesible en 192.168.1.10 y PC en 192.168.1.55. FactoryTalk Linx/Who Active detectó el controlador.,Studio 5000; FactoryTalk Linx,Detección del PLC en Who Active
+2026-09-21,07,Puesta en marcha PLC,12,Respaldo,Se realizó Upload y respaldo local del proyecto previamente cargado en el PLC antes de reemplazarlo.,Respaldo .ACD; Studio 5000,Upload exitoso
+2026-09-21,07,Proyecto PLC,13,Implementación,"Se creó TestPycomm3 y Controller Tags BOOL: Prueba_Python, CMD_Cuchilla_Izquierda y CMD_Cuchilla_Derecha.",TestPycomm3.ACD,Verificación de Tags
+2026-09-21,07,Proyecto PLC,14,Descarga,"TestPycomm3 fue descargado al PLC; controlador Online en Rem Run, Controller OK, I/O OK y No Forces.",TestPycomm3.ACD,Download exitoso
+2026-09-21,08,Comunicación PC-PLC,15,Prueba,Se escribieron exitosamente los tres Controller Tags desde Python mediante pycomm3/CIP/EtherNet/IP.,test/plc/prueba_plc.py; TestPycomm3.ACD,Escritura exitosa de los tres Tags
+2026-09-21,08,Integración visión-PLC,16,Prueba,El algoritmo de visión ejecutó YOLO/tracking y escribió Tags del PLC con éxito. Se observaron latencias altas durante la ejecución.,test/plc/moringa_algoritmo_plc.py; models/best_moringa_1.pt,Visión -> Tags exitosa
+2026-09-22,09,Ladder y salida física,17,Implementación,Se creó TEST_PY_OUT con XIC CMD_Cuchilla_Izquierda y OTE Local:1:O.Data.0. MainRoutine llama la rutina mediante JSR.,TestPycomm3.ACD; TEST_PY_OUT,Verificación JSR y XIC/OTE
+2026-09-22,09,Ladder y salida física,18,Prueba,"La escritura Python de CMD_Cuchilla_Izquierda activó correctamente Local:1:O.Data.0, validando Python -> Tag -> Ladder -> salida digital física.",test/plc/prueba_plc.py; TestPycomm3.ACD,Encendido exitoso de salida digital
+2026-09-22,09,Rendimiento,19,Diagnóstico,"Se definió como siguiente trabajo medir por separado latencia YOLO, procesamiento, escritura PLC, frame total y FPS. También se evaluará conexión LogixDriver persistente.",test/plc/moringa_algoritmo_plc.py,Pendiente baseline de rendimiento
+2026-09-22,10,Documentación,20,Documentación,"Actualización de logs con red, respaldo, Tags, pycomm3, visión, Ladder y salida física.",logs/dev_log.csv; logs/development.md; logs/roadmap.md,Revisión documental

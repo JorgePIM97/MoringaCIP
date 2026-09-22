@@ -82,8 +82,8 @@ class MoringaAlgoritmo():
         self.plc_ip = "192.168.1.10"
 
         # Tags BOOL creados en Studio 5000
-        self.tag_izquierdo = "Cuchilla_Izquierda"
-        self.tag_derecho = "Cuchilla_Derecha"
+        self.tag_izquierdo = "CMD_Cuchilla_Izquierda"
+        self.tag_derecho = "CMD_Cuchilla_Derecha"
 
         # Lock adicional para proteger la comunicación con el PLC
         self.lock_plc = threading.Lock()
