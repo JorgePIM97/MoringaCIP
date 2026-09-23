@@ -115,3 +115,100 @@ apertura/cierre.
 Obtener una línea base de `moringa_algoritmo_plc.py` con `T_YOLO`,
 `T_PLC`, tiempo total por frame y FPS; después implementar conexión
 persistente y comparar.
+
+# Actualización del Roadmap
+
+**Corte: 23/09/2026**
+
+## Fase 3 --- Migración a Allen-Bradley
+
+**Estado: completada para la integración actual.** Se adoptó el
+Allen-Bradley 1769-L18ER-BB1B con CIP/EtherNet/IP y `pycomm3`.
+
+## Fase 4 --- Comunicación PC ↔ PLC
+
+**Estado: completada.** Se validaron red, `ping`, conexión mediante
+`LogixDriver` y escritura de Controller Tags desde Python.
+
+## Fase 5 --- Tags → Ladder → salidas
+
+**Estado: parcialmente completada.** El canal izquierdo está validado:
+
+```text
+CMD_Cuchilla_Izquierda
+→ TEST_PY_OUT
+→ Local:1:O.Data.0
+→ salida digital física
+```
+
+El canal derecho conserva su Tag de comando, pero falta definir y validar
+su salida física.
+
+## Fase 6 --- Visión + PLC
+
+**Estado: integración funcional validada.** YOLO/tracking genera
+decisiones de apertura/cierre y Python escribe los Tags mediante
+EtherNet/IP.
+
+## Fase 7 --- Optimización
+
+**Estado: en progreso con hito principal completado.**
+
+Completado:
+
+- Instrumentación de `T_YOLO`, `T_PROCESAMIENTO`, `T_PLC`, `T_FRAME` y FPS.
+- Baseline en E-GPA-L_01.
+- Implementación de conexión `LogixDriver` persistente.
+- Reducción de `T_PLC` promedio de 77.29 ms a 3.63 ms en E-GPA-L_01.
+- Repetición del Experimento 2 en E-PIM_15.
+- En E-PIM_15: `T_FRAME` promedio 53.08 ms y 18.91 FPS.
+
+Pendiente después de caracterizar la latencia extremo a extremo:
+
+- Evaluar escrituras redundantes.
+- Revisar arquitectura de threads y `join()`.
+- Manejar reconexión/timeouts de forma robusta.
+- Evaluar optimizaciones adicionales de inferencia solo si son necesarias.
+
+## Fase 8 --- Seguridad y control industrial
+
+**Estado: pendiente.** Antes de operar cuchillas reales se deben definir
+estado seguro ante pérdida de comunicación, habilitación, interlocks,
+modo manual/automático y responsabilidades entre visión y PLC.
+
+## Fase 9 --- Latencia extremo a extremo y pruebas dinámicas
+
+**Estado: siguiente fase.**
+
+Experimento 3:
+
+```text
+3A  detección/decisión → escritura PLC → readback
+3B  evento de referencia → transición eléctrica de salida
+3C  detección → salida eléctrica → movimiento mecánico
+```
+
+Después se medirán velocidad de avance y distancia cámara-cuchilla para
+calcular la anticipación necesaria.
+
+## Referencia actual de rendimiento
+
+```text
+E-PIM_15
+Intel Core i5-12400F
+NVIDIA T400 4 GB
+16 GB RAM
+
+T_YOLO promedio:       43.95 ms
+T_PROCESAMIENTO:        7.12 ms
+T_PLC promedio:         3.92 ms
+T_FRAME promedio:      53.08 ms
+FPS promedio:          18.91
+```
+
+## Próximo hito
+
+Ejecutar el **Experimento 3A** sin modificar todavía la lógica de
+detección: instrumentar detección/decisión, `plc.write()` y readback para
+comenzar a caracterizar la latencia de reacción extremo a extremo.
+

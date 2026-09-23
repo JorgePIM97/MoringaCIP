@@ -19,15 +19,8 @@ class MoringaAlgoritmo():
         # VISIÓN
         # ============================================================
 
-        self.modelo_path = (
-            "C:/Users/E-GPA-L_01/Documents/"
-            "MoringaCIP/models/best_moringa_1.pt"
-        )
-
-        self.video_path = (
-            "C:/Users/E-GPA-L_01/Documents/"
-            "VideosTestVision/moringa_1_video.mp4"
-        )
+        self.modelo_path = "C:/Moringa/utils/models/best_moringa_1.pt"
+        self.video_path = "C:/Moringa/utils/videos/moringa_1_video.mp4"
 
         self.track_history = defaultdict(lambda: [])
 

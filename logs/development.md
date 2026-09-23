@@ -242,3 +242,146 @@ La integración funcional **YOLO → decisión → Tag → Ladder → salida
 digital** ya fue demostrada para el canal de prueba izquierdo. El
 siguiente bloque es caracterizar y optimizar latencia antes de
 implementar ambos canales de cuchilla para pruebas dinámicas.
+
+# Actualización de rendimiento y latencia
+
+**Corte: 23/09/2026**
+
+## Instrumentación de rendimiento
+
+Se instrumentó `test/plc/moringa_algoritmo_plc.py` para medir de forma
+separada:
+
+```text
+T_YOLO
+T_PROCESAMIENTO
+T_PLC
+T_FRAME
+FPS
+```
+
+`T_YOLO` corresponde al tiempo de pared alrededor de `model.track()`.
+`T_PROCESAMIENTO` incluye el procesamiento posterior, representación,
+manejo de detecciones y ejecución/sincronización de threads, además de la
+comunicación PLC cuando ocurre un evento. `T_FRAME` representa la sección
+medida de procesamiento del frame y no incluye `cv2.imshow()` ni
+`waitKey()`.
+
+## Experimento 1 --- Baseline E-GPA-L_01
+
+Equipo:
+
+```text
+CPU: Intel Core i5-7200U
+RAM: 6 GB
+GPU: Intel HD Graphics 620
+SSD: Kingston SA400S37480G
+```
+
+La implementación utilizada abría y cerraba `LogixDriver` en cada
+escritura.
+
+```text
+Frames analizados:       118
+Escrituras PLC:           35
+
+T_YOLO promedio:      291.79 ms
+T_PROCESAMIENTO:      148.87 ms
+T_PLC promedio:        77.29 ms
+T_FRAME promedio:     443.88 ms
+FPS promedio:           2.34
+```
+
+La prueba mostró dos costos principales: inferencia/tracking sobre el
+hardware disponible y el establecimiento repetido de la conexión con el
+PLC.
+
+## Experimento 2 --- Conexión LogixDriver persistente
+
+Se modificó la arquitectura para crear la conexión `LogixDriver` una sola
+vez antes del ciclo de procesamiento, reutilizarla para todas las
+escrituras y cerrarla al terminar.
+
+En E-GPA-L_01 se obtuvo:
+
+```text
+Frames analizados:       136
+Escrituras PLC:           45
+
+T_YOLO promedio:      273.94 ms
+T_PROCESAMIENTO:      133.91 ms
+T_PLC promedio:         3.63 ms
+T_FRAME promedio:     411.08 ms
+FPS promedio:           2.50
+```
+
+El tiempo medio de comunicación medido alrededor de la escritura pasó de
+77.29 ms a 3.63 ms, una reducción aproximada del 95.3 %. La conexión
+persistente queda adoptada como implementación actual.
+
+## Repetición del Experimento 2 --- E-PIM_15
+
+Se clonó la rama de medición de latencias en otro equipo y se ejecutó la
+misma prueba con el mismo algoritmo, modelo, video y conexión persistente.
+
+Equipo:
+
+```text
+Nombre: E-PIM_15
+CPU: Intel Core i5-12400F
+RAM: 16 GB
+GPU: NVIDIA T400 4 GB
+SSD: PNY CS3030 1 TB
+Sistema: x64
+```
+
+Resultados:
+
+```text
+Frames analizados:       188
+Escrituras PLC:           64
+
+T_YOLO promedio:       43.95 ms
+T_PROCESAMIENTO:        7.12 ms
+T_PLC promedio:         3.92 ms
+T_FRAME promedio:      53.08 ms
+FPS promedio:          18.91
+```
+
+Comparado con E-GPA-L_01 usando también conexión persistente, el tiempo
+medio de frame fue aproximadamente 7.74 veces menor y el FPS medio
+aproximadamente 7.56 veces mayor. La comunicación PLC permaneció en el
+mismo orden de magnitud, por lo que la diferencia principal de
+rendimiento se encuentra en el procesamiento de visión y procesamiento
+local.
+
+## Estado de salidas
+
+`CMD_Cuchilla_Izquierda` está vinculado mediante Ladder a
+`Local:1:O.Data.0` y su activación física ya fue validada. El Tag
+`CMD_Cuchilla_Derecha` puede escribirse desde Python, pero su salida
+física todavía no está implementada.
+
+## Siguiente etapa --- Experimento 3
+
+El siguiente objetivo es medir la latencia real de reacción extremo a
+extremo. Se realizará por capas:
+
+```text
+3A: detección/decisión → plc.write() → readback
+3B: evento de referencia → transición eléctrica de Local:1:O.Data.0
+3C: detección → salida eléctrica → movimiento mecánico de la cuchilla
+```
+
+Después se relacionará la latencia total con la velocidad de avance y la
+distancia cámara-cuchilla para determinar la anticipación necesaria de
+apertura y cierre.
+
+## Estado actual
+
+La cadena funcional del canal izquierdo está demostrada y la conexión
+persistente redujo de forma importante el costo de comunicación. E-PIM_15
+queda como referencia actual de rendimiento para las pruebas de visión.
+Antes de modificar nuevamente la arquitectura se caracterizará la
+latencia extremo a extremo.
+
