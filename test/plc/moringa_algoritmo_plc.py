@@ -5,6 +5,7 @@ import threading
 import pandas as pd
 import os
 from datetime import datetime
+import time
 
 # Allen-Bradley / EtherNet-IP
 from pycomm3 import LogixDriver
@@ -119,22 +120,33 @@ class MoringaAlgoritmo():
 
         try:
 
-            # Evita que dos threads intenten comunicarse
-            # simultáneamente con el PLC
+            inicio_plc = time.perf_counter()
+
             with self.lock_plc:
 
                 with LogixDriver(self.plc_ip) as plc:
 
                     resultado = plc.write(tag, valor)
 
-                    if resultado:
-                        print(
-                            f"[PLC] {tag} = {valor}"
-                        )
-                    else:
-                        print(
-                            f"[PLC] Error escribiendo {tag}"
-                        )
+            fin_plc = time.perf_counter()
+
+            tiempo_plc_ms = (
+                fin_plc - inicio_plc
+            ) * 1000
+
+            print(
+                f"[PERF] T_PLC: "
+                f"{tiempo_plc_ms:.2f} ms"
+            )
+
+            if resultado:
+                print(
+                    f"[PLC] {tag} = {valor}"
+                )
+            else:
+                print(
+                    f"[PLC] Error escribiendo {tag}"
+                )
 
         except Exception as error:
 
@@ -540,16 +552,26 @@ class MoringaAlgoritmo():
 
         while cap.isOpened():
 
+            inicio_frame = time.perf_counter()
+
             success, frame = cap.read()
 
             if not success:
                 break
 
 
+            inicio_yolo = time.perf_counter()
+
             result = model.track(
                 frame,
                 persist=True
             )[0]
+
+            fin_yolo = time.perf_counter()
+
+            tiempo_yolo_ms = (
+                fin_yolo - inicio_yolo
+            ) * 1000
 
 
             annotated_frame = result.plot(
@@ -782,6 +804,29 @@ class MoringaAlgoritmo():
                 for t in threads:
                     t.join()
 
+            fin_procesamiento = time.perf_counter()
+
+            tiempo_procesamiento_ms = (
+                fin_procesamiento - fin_yolo
+            ) * 1000
+
+            fin_frame = time.perf_counter()
+
+            tiempo_frame_ms = (
+                fin_frame - inicio_frame
+            ) * 1000
+
+            fps_real = (
+                1 / (fin_frame - inicio_frame)
+            )                
+
+            print(
+                f"[PERF] "
+                f"T_YOLO={tiempo_yolo_ms:.2f} ms | "
+                f"T_PROCESAMIENTO={tiempo_procesamiento_ms:.2f} ms | "
+                f"T_FRAME={tiempo_frame_ms:.2f} ms | "
+                f"FPS={fps_real:.2f}"
+            )
 
             cv2.imshow(
                 "Moringa Algoritmo",
