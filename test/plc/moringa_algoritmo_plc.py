@@ -89,6 +89,8 @@ class MoringaAlgoritmo():
         # Lock adicional para proteger la comunicación con el PLC
         self.lock_plc = threading.Lock()
 
+        # Conexión persistente
+        self.plc = None
 
     # ================================================================
     # VISIÓN
@@ -117,16 +119,20 @@ class MoringaAlgoritmo():
     # ================================================================
 
     def escribir_tag(self, tag, valor):
-
         try:
 
             inicio_plc = time.perf_counter()
 
             with self.lock_plc:
 
-                with LogixDriver(self.plc_ip) as plc:
+                if self.plc is None:
+                    print("[PLC] No existe conexión con el PLC")
+                    return False
 
-                    resultado = plc.write(tag, valor)
+                resultado = self.plc.write(
+                    tag,
+                    valor
+                )
 
             fin_plc = time.perf_counter()
 
@@ -143,17 +149,20 @@ class MoringaAlgoritmo():
                 print(
                     f"[PLC] {tag} = {valor}"
                 )
-            else:
-                print(
-                    f"[PLC] Error escribiendo {tag}"
-                )
-
-        except Exception as error:
+                return True
 
             print(
-                f"[PLC] Error de comunicación: {error}"
+                f"[PLC] Error escribiendo {tag}"
             )
 
+            return False
+
+        except Exception as error:
+            print(
+                f"[PLC] Error de comunicación: "
+                f"{error}"
+            )
+            return False
 
     # ================================================================
     # CONTROL CUCHILLAS
@@ -192,6 +201,29 @@ class MoringaAlgoritmo():
             f"[PLC] Cuchilla ABIERTA -> {tag_lado}"
         )
 
+    def conectar_plc(self):
+        try:
+            print(f"[PLC] Conectando con {self.plc_ip}...")
+
+            self.plc = LogixDriver(self.plc_ip)
+            self.plc.open()
+
+            print("[PLC] Conexión establecida")
+
+        except Exception as error:
+            print(f"[PLC] Error al conectar: {error}")
+            self.plc = None
+
+
+    def desconectar_plc(self):
+        if self.plc is not None:
+            try:
+                self.plc.close()
+                print("[PLC] Conexión cerrada")
+            except Exception as error:
+                print(f"[PLC] Error al cerrar conexión: {error}")
+            finally:
+                self.plc = None
 
     # ================================================================
     # LÓGICA DE CONTROL
@@ -549,6 +581,7 @@ class MoringaAlgoritmo():
             self.video_path
         )
 
+        self.conectar_plc()
 
         while cap.isOpened():
 
@@ -842,7 +875,8 @@ class MoringaAlgoritmo():
             ):
                 break
 
-
+        self.desconectar_plc()
+        
         cap.release()
 
         cv2.destroyAllWindows()
