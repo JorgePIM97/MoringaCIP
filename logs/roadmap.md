@@ -212,3 +212,111 @@ Ejecutar el **Experimento 3A** sin modificar todavía la lógica de
 detección: instrumentar detección/decisión, `plc.write()` y readback para
 comenzar a caracterizar la latencia de reacción extremo a extremo.
 
+# Actualización del Roadmap — Cierre Experimento 3A
+
+**Corte: 24/09/2026**
+
+## Fase 9 — Latencia extremo a extremo y pruebas dinámicas
+
+**Estado: en progreso.**
+
+### Experimento 3A — Comando → readback del PLC
+
+**Estado: completado.**
+
+Alcance exacto:
+
+```text
+INICIO:
+Python ya tomó la decisión de abrir/cerrar.
+T0 se registra inmediatamente antes de plc.write().
+
+        ↓
+
+plc.write("CMD_Cuchilla_Izquierda", valor)
+
+        ↓
+
+Lógica Ladder:
+CMD_Cuchilla_Izquierda
+→ XIC
+→ OTE Local:1:O.Data.0
+
+        ↓
+
+plc.read("Local:1:O.Data.0")
+
+        ↓
+
+FINAL:
+T2 se registra cuando Python termina de recibir el readback.
+```
+
+Métricas:
+
+```text
+T_WRITE    = T1 - T0
+T_READBACK = T2 - T1
+T_3A       = T2 - T0
+```
+
+Resultado actual en E-PIM_15:
+
+```text
+Readbacks:              26
+Coincidencias CMD/OUT:  26
+CMD != OUT:              0
+
+T_WRITE promedio:        3.50 ms
+T_READBACK promedio:     5.26 ms
+T_3A promedio:           8.97 ms
+T_3A mediana:            8.99 ms
+T_3A P95:               10.90 ms
+T_3A mínimo:             6.24 ms
+T_3A máximo:            11.16 ms
+```
+
+**Límite de la medición:** `T_3A` no incluye cámara/YOLO antes de la
+decisión y tampoco demuestra el instante de transición eléctrica del
+borne ni el movimiento mecánico de la cuchilla.
+
+### Experimento 3B — Salida eléctrica física
+
+**Estado: siguiente hito.**
+
+Objetivo: medir con una referencia externa el tiempo hasta la transición
+eléctrica real de la salida física asociada a `Local:1:O.Data.0`.
+
+La prueba deberá distinguir el estado observable por CIP de la transición
+eléctrica del borne.
+
+### Experimento 3C — Movimiento mecánico
+
+**Estado: pendiente.**
+
+Objetivo: medir desde el evento de control hasta que la cuchilla alcance
+físicamente la posición requerida de apertura/cierre.
+
+### Calibración dinámica
+
+**Estado: pendiente después de 3B y 3C.**
+
+Con la latencia total medida se relacionarán:
+
+```text
+latencia total
+velocidad de avance
+distancia cámara-cuchilla
+```
+
+para calcular la anticipación necesaria mediante:
+
+```text
+distancia de anticipación = velocidad × latencia
+```
+
+## Próximo hito
+
+Preparar y ejecutar el **Experimento 3B** sin confundir el readback de
+`Local:1:O.Data.0` con una medición eléctrica del borne físico.
+

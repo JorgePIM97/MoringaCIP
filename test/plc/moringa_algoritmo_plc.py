@@ -85,6 +85,8 @@ class MoringaAlgoritmo():
         # Conexión persistente
         self.plc = None
 
+        self.tag_salida_izquierda = "Local:1:O.Data.0"
+
     # ================================================================
     # VISIÓN
     # ================================================================
@@ -113,48 +115,71 @@ class MoringaAlgoritmo():
 
     def escribir_tag(self, tag, valor):
         try:
-
-            inicio_plc = time.perf_counter()
-
             with self.lock_plc:
 
                 if self.plc is None:
                     print("[PLC] No existe conexión con el PLC")
                     return False
 
-                resultado = self.plc.write(
-                    tag,
-                    valor
+                # ==========================================
+                # INICIO EXPERIMENTO 3A
+                # ==========================================
+                t0 = time.perf_counter()
+
+                resultado = self.plc.write(tag, valor)
+
+                t1 = time.perf_counter()
+
+                tiempo_write_ms = (t1 - t0) * 1000
+
+                print(
+                    f"[PERF-3A] "
+                    f"T_WRITE={tiempo_write_ms:.3f} ms"
                 )
 
-            fin_plc = time.perf_counter()
+                # ------------------------------------------
+                # READBACK SOLO PARA CUCHILLA IZQUIERDA
+                # ------------------------------------------
+                if tag == "CMD_Cuchilla_Izquierda":
 
-            tiempo_plc_ms = (
-                fin_plc - inicio_plc
-            ) * 1000
+                    lectura = self.plc.read(
+                        self.tag_salida_izquierda
+                    )
 
-            print(
-                f"[PERF] T_PLC: "
-                f"{tiempo_plc_ms:.2f} ms"
-            )
+                    t2 = time.perf_counter()
+
+                    tiempo_readback_ms = (t2 - t1) * 1000
+                    tiempo_3a_ms = (t2 - t0) * 1000
+
+                    print(
+                        f"[PERF-3A] "
+                        f"T_READBACK={tiempo_readback_ms:.3f} ms | "
+                        f"T_3A={tiempo_3a_ms:.3f} ms | "
+                        f"CMD={valor} | "
+                        f"OUT={lectura.value}"
+                    )
+
+                    if lectura.value != valor:
+                        print(
+                            f"[PERF-3A][WARNING] "
+                            f"CMD={valor} pero "
+                            f"{self.tag_salida_izquierda}="
+                            f"{lectura.value}"
+                        )
+
+                # ==========================================
+                # FIN EXPERIMENTO 3A
+                # ==========================================
 
             if resultado:
-                print(
-                    f"[PLC] {tag} = {valor}"
-                )
+                print(f"[PLC] {tag} = {valor}")
                 return True
 
-            print(
-                f"[PLC] Error escribiendo {tag}"
-            )
-
+            print(f"[PLC] Error escribiendo {tag}")
             return False
 
         except Exception as error:
-            print(
-                f"[PLC] Error de comunicación: "
-                f"{error}"
-            )
+            print(f"[PLC] Error de comunicación: {error}")
             return False
 
     # ================================================================

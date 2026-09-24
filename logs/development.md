@@ -385,3 +385,193 @@ queda como referencia actual de rendimiento para las pruebas de visión.
 Antes de modificar nuevamente la arquitectura se caracterizará la
 latencia extremo a extremo.
 
+# Experimento 3A — Latencia de comando y readback del PLC
+
+**Corte: 24/09/2026**
+
+## Objetivo
+
+El Experimento 3A se diseñó para medir cuánto tiempo transcurre desde que
+Python ya tomó la decisión de cambiar el estado de la cuchilla izquierda
+hasta que Python puede observar, mediante EtherNet/IP, que la imagen de
+salida utilizada por la lógica Ladder tiene el mismo estado solicitado.
+
+La ruta evaluada es:
+
+```text
+Decisión de abrir/cerrar ya tomada en Python
+                │
+                │ T0
+                ▼
+plc.write("CMD_Cuchilla_Izquierda", valor)
+                │
+                │ T1
+                ▼
+Controller Tag: CMD_Cuchilla_Izquierda
+                │
+                ▼
+Lógica Ladder
+XIC CMD_Cuchilla_Izquierda
+                │
+                ▼
+OTE Local:1:O.Data.0
+                │
+                ▼
+plc.read("Local:1:O.Data.0")
+                │
+                │ T2
+                ▼
+Python recibe el estado de readback
+```
+
+## Punto exacto de inicio y final de la medición
+
+La medición `T_3A` **no inicia cuando la cámara captura la imagen ni
+cuando YOLO comienza la inferencia**. Para esta prueba, el procesamiento
+de visión y la decisión lógica ya ocurrieron.
+
+El instante `T0` se registra inmediatamente antes de ejecutar:
+
+```python
+self.plc.write(tag, valor)
+```
+
+Por tanto, `T0` representa el momento en que Python ya decidió
+ABRIR/CERRAR y está a punto de enviar el comando al PLC mediante
+EtherNet/IP.
+
+El instante `T1` se registra inmediatamente después de que termina
+`plc.write()`. De esta forma:
+
+```text
+T_WRITE = T1 - T0
+```
+
+mide el tiempo de la operación de escritura observada desde Python.
+
+Para el canal izquierdo, después de la escritura se ejecuta:
+
+```python
+self.plc.read("Local:1:O.Data.0")
+```
+
+El instante `T2` se registra cuando esa operación de lectura termina y
+Python ya recibió el valor de `Local:1:O.Data.0`.
+
+Por tanto:
+
+```text
+T_READBACK = T2 - T1
+T_3A       = T2 - T0
+```
+
+`T_3A` comienza justo antes del envío del comando y termina cuando Python
+ha recibido por EtherNet/IP el readback de `Local:1:O.Data.0`.
+
+## Qué incluye T_3A
+
+La medición contiene, desde la perspectiva del programa Python:
+
+```text
+escritura EtherNet/IP del comando
++ procesamiento/scan del PLC observable entre las transacciones
++ ejecución de la lógica que relaciona CMD_Cuchilla_Izquierda
+  con Local:1:O.Data.0
++ transacción EtherNet/IP de lectura
++ recepción del readback en Python
+```
+
+El readback se realizó sobre `Local:1:O.Data.0`, no sobre el mismo
+Controller Tag escrito, para observar el estado asociado a la salida
+después de la lógica Ladder.
+
+## Qué NO mide T_3A
+
+`T_3A` no debe interpretarse como latencia física total de la máquina.
+
+No mide directamente:
+
+```text
+latencia cámara → frame disponible
+tiempo completo de YOLO/tracking previo a la decisión
+transición eléctrica real en el borne físico del PLC
+retardo del driver/relevador/actuador
+tiempo mecánico de movimiento de la cuchilla
+momento en que la cuchilla alcanza una posición segura
+```
+
+Aunque `Local:1:O.Data.0` representa la imagen de salida utilizada por el
+controlador, leerla mediante CIP no demuestra por sí solo el instante
+exacto en que el voltaje cambió físicamente en el borne.
+
+## Validación previa
+
+Antes de ejecutar la prueba se verificó manualmente desde Python que:
+
+```text
+CMD_Cuchilla_Izquierda = False
+→ Local:1:O.Data.0 = False
+
+CMD_Cuchilla_Izquierda = True
+→ Local:1:O.Data.0 = True
+```
+
+Esto confirmó que Python podía utilizar `Local:1:O.Data.0` como readback
+para el Experimento 3A.
+
+## Resultados
+
+El Experimento 3A se ejecutó en E-PIM_15 utilizando la conexión
+`LogixDriver` persistente.
+
+```text
+Readbacks canal izquierdo: 26
+CMD != OUT:                 0
+
+T_WRITE
+  promedio:                 3.50 ms
+  mediana:                  3.53 ms
+  P95:                      5.63 ms
+  mínimo:                   1.43 ms
+  máximo:                   6.01 ms
+
+T_READBACK
+  promedio:                 5.26 ms
+  mediana:                  5.28 ms
+  P95:                      5.56 ms
+  mínimo:                   4.81 ms
+  máximo:                   5.57 ms
+
+T_3A
+  promedio:                 8.97 ms
+  mediana:                  8.99 ms
+  P95:                     10.90 ms
+  mínimo:                   6.24 ms
+  máximo:                  11.16 ms
+```
+
+Los 26 readbacks coincidieron con el valor solicitado. Durante esta
+corrida no se observó ningún caso `CMD != OUT`.
+
+## Interpretación
+
+El resultado permite caracterizar la ruta de software/comunicación y el
+estado observable del controlador. La conexión EtherNet/IP persistente
+continúa mostrando tiempos de escritura de pocos milisegundos y no es el
+principal cuello de botella del procesamiento de visión.
+
+El `plc.read()` fue agregado con propósito de instrumentación. No se
+considera todavía un requisito para la versión de producción, ya que
+añade una segunda transacción EtherNet/IP al evento.
+
+## Próxima etapa
+
+El siguiente paso será el **Experimento 3B**, cuyo objetivo es medir la
+transición eléctrica real de la salida física del PLC con una referencia
+de medición externa adecuada.
+
+Después, el **Experimento 3C** medirá el movimiento mecánico de la
+cuchilla hasta alcanzar la posición requerida. Con la latencia total,
+velocidad de avance y distancia cámara-cuchilla será posible calcular la
+anticipación de apertura/cierre necesaria en campo.
+
