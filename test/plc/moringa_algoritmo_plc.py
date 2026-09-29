@@ -615,7 +615,8 @@ class MoringaAlgoritmo():
 
             result = model.track(
                 frame,
-                persist=True
+                persist=True,
+                device=0
             )[0]
 
             fin_yolo = time.perf_counter()
