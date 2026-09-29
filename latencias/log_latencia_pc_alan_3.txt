@@ -1,0 +1,1017 @@
+0: 384x640 8 moringas, 34.2ms
+Speed: 3.3ms preprocess, 34.2ms inference, 4.2ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 608
+[PERF-3A] T_WRITE=3.171 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=75.07 ms | T_PROCESAMIENTO=15.73 ms | T_FRAME=93.47 ms | FPS=10.70
+
+0: 384x640 8 moringas, 33.4ms
+Speed: 3.6ms preprocess, 33.4ms inference, 5.7ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=75.91 ms | T_PROCESAMIENTO=12.45 ms | T_FRAME=90.66 ms | FPS=11.03
+
+0: 384x640 8 moringas, 33.6ms
+Speed: 4.1ms preprocess, 33.6ms inference, 5.6ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 608
+[PERF-3A] T_WRITE=4.069 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=76.86 ms | T_PROCESAMIENTO=14.39 ms | T_FRAME=93.49 ms | FPS=10.70
+
+0: 384x640 8 moringas, 33.1ms
+Speed: 3.1ms preprocess, 33.1ms inference, 5.6ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=75.19 ms | T_PROCESAMIENTO=10.91 ms | T_FRAME=88.63 ms | FPS=11.28
+
+0: 384x640 8 moringas, 32.8ms
+Speed: 3.6ms preprocess, 32.8ms inference, 6.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=73.96 ms | T_PROCESAMIENTO=10.06 ms | T_FRAME=86.18 ms | FPS=11.60
+
+0: 384x640 7 moringas, 20.1ms
+Speed: 3.5ms preprocess, 20.1ms inference, 3.2ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.60 ms | T_PROCESAMIENTO=10.24 ms | T_FRAME=71.04 ms | FPS=14.08
+
+0: 384x640 8 moringas, 19.7ms
+Speed: 2.6ms preprocess, 19.7ms inference, 3.3ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 610
+[PERF-3A] T_WRITE=6.027 ms
+[PERF-3A] T_READBACK=5.173 ms | T_3A=11.200 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=58.39 ms | T_PROCESAMIENTO=21.69 ms | T_FRAME=82.25 ms | FPS=12.16
+
+0: 384x640 7 moringas, 20.3ms
+Speed: 2.1ms preprocess, 20.3ms inference, 3.9ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=61.07 ms | T_PROCESAMIENTO=8.77 ms | T_FRAME=72.06 ms | FPS=13.88
+
+0: 384x640 7 moringas, 20.6ms
+Speed: 2.1ms preprocess, 20.6ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 610
+[derecho] Cuchilla ABIERTA - ID 611
+[PERF-3A] T_WRITE=3.420 ms
+[PERF-3A] T_READBACK=5.243 ms | T_3A=8.663 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF-3A] T_WRITE=5.295 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.99 ms | T_PROCESAMIENTO=22.27 ms | T_FRAME=82.38 ms | FPS=12.14
+
+0: 384x640 7 moringas, 20.3ms
+Speed: 3.9ms preprocess, 20.3ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.97 ms | T_PROCESAMIENTO=10.59 ms | T_FRAME=71.01 ms | FPS=14.08
+
+0: 384x640 7 moringas, 19.4ms
+Speed: 3.2ms preprocess, 19.4ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 611
+[PERF-3A] T_WRITE=5.947 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=59.24 ms | T_PROCESAMIENTO=15.19 ms | T_FRAME=76.89 ms | FPS=13.01
+
+0: 384x640 7 moringas, 20.1ms
+Speed: 2.2ms preprocess, 20.1ms inference, 3.7ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.95 ms | T_PROCESAMIENTO=10.90 ms | T_FRAME=72.08 ms | FPS=13.87
+
+0: 384x640 7 moringas, 20.0ms
+Speed: 4.0ms preprocess, 20.0ms inference, 4.2ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=68.07 ms | T_PROCESAMIENTO=11.23 ms | T_FRAME=82.30 ms | FPS=12.15
+
+0: 384x640 8 moringas, 20.5ms
+Speed: 2.2ms preprocess, 20.5ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.46 ms | T_PROCESAMIENTO=10.72 ms | T_FRAME=70.34 ms | FPS=14.22
+
+0: 384x640 8 moringas, 20.1ms
+Speed: 3.2ms preprocess, 20.1ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.45 ms | T_PROCESAMIENTO=10.98 ms | T_FRAME=72.64 ms | FPS=13.77
+
+0: 384x640 8 moringas, 20.0ms
+Speed: 2.5ms preprocess, 20.0ms inference, 3.2ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 612
+[PERF-3A] T_WRITE=6.353 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.30 ms | T_PROCESAMIENTO=17.58 ms | T_FRAME=77.03 ms | FPS=12.98
+
+0: 384x640 8 moringas, 19.0ms
+Speed: 3.2ms preprocess, 19.0ms inference, 3.2ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.65 ms | T_PROCESAMIENTO=12.74 ms | T_FRAME=75.82 ms | FPS=13.19
+
+0: 384x640 7 moringas, 20.2ms
+Speed: 3.4ms preprocess, 20.2ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 612
+[PERF-3A] T_WRITE=6.405 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=58.13 ms | T_PROCESAMIENTO=17.24 ms | T_FRAME=77.86 ms | FPS=12.84
+
+0: 384x640 7 moringas, 19.8ms
+Speed: 3.2ms preprocess, 19.8ms inference, 5.2ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=71.15 ms | T_PROCESAMIENTO=8.80 ms | T_FRAME=82.82 ms | FPS=12.07
+
+0: 384x640 8 moringas, 20.7ms
+Speed: 3.0ms preprocess, 20.7ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.17 ms | T_PROCESAMIENTO=10.93 ms | T_FRAME=75.32 ms | FPS=13.28
+
+0: 384x640 8 moringas, 19.6ms
+Speed: 3.0ms preprocess, 19.6ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.09 ms | T_PROCESAMIENTO=10.60 ms | T_FRAME=69.75 ms | FPS=14.34
+
+0: 384x640 8 moringas, 20.1ms
+Speed: 2.5ms preprocess, 20.1ms inference, 4.2ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 613
+[PERF-3A] T_WRITE=4.445 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=61.48 ms | T_PROCESAMIENTO=19.57 ms | T_FRAME=84.37 ms | FPS=11.85
+
+0: 384x640 7 moringas, 20.0ms
+Speed: 3.3ms preprocess, 20.0ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.36 ms | T_PROCESAMIENTO=9.86 ms | T_FRAME=71.30 ms | FPS=14.02
+
+0: 384x640 8 moringas, 19.0ms
+Speed: 3.0ms preprocess, 19.0ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 613
+[PERF-3A] T_WRITE=3.376 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=55.62 ms | T_PROCESAMIENTO=12.58 ms | T_FRAME=70.25 ms | FPS=14.23
+
+0: 384x640 8 moringas, 19.4ms
+Speed: 3.0ms preprocess, 19.4ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.33 ms | T_PROCESAMIENTO=10.08 ms | T_FRAME=71.57 ms | FPS=13.97
+
+0: 384x640 7 moringas, 20.2ms
+Speed: 3.0ms preprocess, 20.2ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.98 ms | T_PROCESAMIENTO=11.37 ms | T_FRAME=73.52 ms | FPS=13.60
+
+0: 384x640 7 moringas, 20.4ms
+Speed: 2.2ms preprocess, 20.4ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.06 ms | T_PROCESAMIENTO=8.85 ms | T_FRAME=71.47 ms | FPS=13.99
+
+0: 384x640 8 moringas, 20.0ms
+Speed: 2.4ms preprocess, 20.0ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=56.29 ms | T_PROCESAMIENTO=9.81 ms | T_FRAME=68.25 ms | FPS=14.65
+
+0: 384x640 7 moringas, 20.3ms
+Speed: 3.0ms preprocess, 20.3ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.87 ms | T_PROCESAMIENTO=11.57 ms | T_FRAME=73.92 ms | FPS=13.53
+
+0: 384x640 7 moringas, 33.5ms
+Speed: 4.5ms preprocess, 33.5ms inference, 5.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 614
+[PERF-3A] T_WRITE=4.425 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=75.62 ms | T_PROCESAMIENTO=13.18 ms | T_FRAME=92.45 ms | FPS=10.82
+
+0: 384x640 7 moringas, 33.9ms
+Speed: 3.0ms preprocess, 33.9ms inference, 5.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=78.42 ms | T_PROCESAMIENTO=10.05 ms | T_FRAME=90.64 ms | FPS=11.03
+
+0: 384x640 7 moringas, 33.3ms
+Speed: 4.1ms preprocess, 33.3ms inference, 6.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 614
+[PERF-3A] T_WRITE=5.756 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=74.93 ms | T_PROCESAMIENTO=17.33 ms | T_FRAME=94.48 ms | FPS=10.58
+
+0: 384x640 8 moringas, 32.7ms
+Speed: 3.3ms preprocess, 32.7ms inference, 7.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=81.33 ms | T_PROCESAMIENTO=9.02 ms | T_FRAME=93.56 ms | FPS=10.69
+
+0: 384x640 9 moringas, 33.7ms
+Speed: 3.1ms preprocess, 33.7ms inference, 5.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=74.26 ms | T_PROCESAMIENTO=11.06 ms | T_FRAME=88.34 ms | FPS=11.32
+
+0: 384x640 8 moringas, 33.8ms
+Speed: 3.4ms preprocess, 33.8ms inference, 5.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 616
+[PERF-3A] T_WRITE=3.308 ms
+[PERF-3A] T_READBACK=5.141 ms | T_3A=8.450 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=75.23 ms | T_PROCESAMIENTO=18.22 ms | T_FRAME=95.73 ms | FPS=10.45
+
+0: 384x640 8 moringas, 19.8ms
+Speed: 3.3ms preprocess, 19.8ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 616
+[PERF-3A] T_WRITE=5.437 ms
+[PERF-3A] T_READBACK=5.350 ms | T_3A=10.787 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=59.75 ms | T_PROCESAMIENTO=20.62 ms | T_FRAME=82.75 ms | FPS=12.09
+
+0: 384x640 7 moringas, 20.5ms
+Speed: 2.4ms preprocess, 20.5ms inference, 3.3ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 617
+[PERF-3A] T_WRITE=6.697 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.31 ms | T_PROCESAMIENTO=16.70 ms | T_FRAME=76.49 ms | FPS=13.07
+
+0: 384x640 7 moringas, 20.3ms
+Speed: 2.3ms preprocess, 20.3ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.97 ms | T_PROCESAMIENTO=9.19 ms | T_FRAME=74.36 ms | FPS=13.45
+
+0: 384x640 7 moringas, 19.5ms
+Speed: 3.0ms preprocess, 19.5ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 617
+[PERF-3A] T_WRITE=2.812 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=60.18 ms | T_PROCESAMIENTO=11.92 ms | T_FRAME=74.33 ms | FPS=13.45
+
+0: 384x640 7 moringas, 20.4ms
+Speed: 2.3ms preprocess, 20.4ms inference, 5.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.17 ms | T_PROCESAMIENTO=9.62 ms | T_FRAME=74.06 ms | FPS=13.50
+
+0: 384x640 8 moringas, 20.0ms
+Speed: 3.6ms preprocess, 20.0ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.93 ms | T_PROCESAMIENTO=10.24 ms | T_FRAME=71.31 ms | FPS=14.02
+
+0: 384x640 8 moringas, 19.7ms
+Speed: 2.6ms preprocess, 19.7ms inference, 4.4ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 618
+[PERF-3A] T_WRITE=4.009 ms
+[PERF-3A] T_READBACK=5.132 ms | T_3A=9.141 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=58.34 ms | T_PROCESAMIENTO=18.85 ms | T_FRAME=79.43 ms | FPS=12.59
+
+0: 384x640 9 moringas, 19.8ms
+Speed: 2.2ms preprocess, 19.8ms inference, 3.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.75 ms | T_PROCESAMIENTO=11.20 ms | T_FRAME=71.17 ms | FPS=14.05
+
+0: 384x640 8 moringas, 20.2ms
+Speed: 2.4ms preprocess, 20.2ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 618
+[derecho] Cuchilla ABIERTA - ID 619
+[PERF-3A] T_WRITE=4.121 ms
+[PERF-3A] T_READBACK=5.550 ms | T_3A=9.671 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF-3A] T_WRITE=4.985 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=58.41 ms | T_PROCESAMIENTO=23.52 ms | T_FRAME=84.09 ms | FPS=11.89
+
+0: 384x640 8 moringas, 19.7ms
+Speed: 2.5ms preprocess, 19.7ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.17 ms | T_PROCESAMIENTO=10.37 ms | T_FRAME=71.03 ms | FPS=14.08
+
+0: 384x640 8 moringas, 20.2ms
+Speed: 2.1ms preprocess, 20.2ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 619
+[PERF-3A] T_WRITE=7.366 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=58.67 ms | T_PROCESAMIENTO=16.48 ms | T_FRAME=77.32 ms | FPS=12.93
+
+0: 384x640 8 moringas, 19.5ms
+Speed: 2.2ms preprocess, 19.5ms inference, 4.6ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.06 ms | T_PROCESAMIENTO=11.34 ms | T_FRAME=72.76 ms | FPS=13.74
+
+0: 384x640 8 moringas, 20.0ms
+Speed: 3.1ms preprocess, 20.0ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=61.04 ms | T_PROCESAMIENTO=10.84 ms | T_FRAME=74.35 ms | FPS=13.45
+
+0: 384x640 8 moringas, 20.2ms
+Speed: 2.1ms preprocess, 20.2ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.10 ms | T_PROCESAMIENTO=14.00 ms | T_FRAME=76.22 ms | FPS=13.12
+
+0: 384x640 9 moringas, 19.8ms
+Speed: 2.7ms preprocess, 19.8ms inference, 4.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=65.75 ms | T_PROCESAMIENTO=11.30 ms | T_FRAME=80.06 ms | FPS=12.49
+
+0: 384x640 9 moringas, 20.2ms
+Speed: 2.5ms preprocess, 20.2ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=64.48 ms | T_PROCESAMIENTO=11.97 ms | T_FRAME=78.65 ms | FPS=12.71
+
+0: 384x640 9 moringas, 20.1ms
+Speed: 3.6ms preprocess, 20.1ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 620
+[derecho] Cuchilla ABIERTA - ID 623
+[PERF-3A] T_WRITE=4.012 ms
+[PERF-3A] T_READBACK=5.274 ms | T_3A=9.286 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF-3A] T_WRITE=5.036 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.40 ms | T_PROCESAMIENTO=23.54 ms | T_FRAME=83.12 ms | FPS=12.03
+
+0: 384x640 9 moringas, 19.5ms
+Speed: 3.8ms preprocess, 19.5ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.27 ms | T_PROCESAMIENTO=10.76 ms | T_FRAME=72.76 ms | FPS=13.74
+
+0: 384x640 9 moringas, 20.9ms
+Speed: 2.1ms preprocess, 20.9ms inference, 3.2ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 620
+[derecho] Cuchilla CERRADA - ID 623
+[PERF-3A] T_WRITE=2.633 ms
+[PERF-3A] T_READBACK=4.769 ms | T_3A=7.402 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF-3A] T_WRITE=4.991 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=56.87 ms | T_PROCESAMIENTO=21.63 ms | T_FRAME=80.63 ms | FPS=12.40
+
+0: 384x640 9 moringas, 20.7ms
+Speed: 2.0ms preprocess, 20.7ms inference, 3.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.60 ms | T_PROCESAMIENTO=11.17 ms | T_FRAME=71.00 ms | FPS=14.08
+
+0: 384x640 9 moringas, 20.0ms
+Speed: 2.6ms preprocess, 20.0ms inference, 3.2ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.81 ms | T_PROCESAMIENTO=10.71 ms | T_FRAME=72.65 ms | FPS=13.77
+
+0: 384x640 9 moringas, 20.0ms
+Speed: 3.1ms preprocess, 20.0ms inference, 3.8ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.59 ms | T_PROCESAMIENTO=16.44 ms | T_FRAME=81.16 ms | FPS=12.32
+
+0: 384x640 9 moringas, 20.8ms
+Speed: 2.3ms preprocess, 20.8ms inference, 3.5ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 621
+[PERF-3A] T_WRITE=3.954 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=60.60 ms | T_PROCESAMIENTO=14.78 ms | T_FRAME=78.17 ms | FPS=12.79
+
+0: 384x640 9 moringas, 34.6ms
+Speed: 3.5ms preprocess, 34.6ms inference, 5.9ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 622
+[PERF-3A] T_WRITE=7.567 ms
+[PERF-3A] T_READBACK=4.913 ms | T_3A=12.480 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=82.80 ms | T_PROCESAMIENTO=23.29 ms | T_FRAME=108.30 ms | FPS=9.23
+
+0: 384x640 9 moringas, 34.7ms
+Speed: 4.1ms preprocess, 34.7ms inference, 5.3ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 621
+[PERF-3A] T_WRITE=3.800 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=75.14 ms | T_PROCESAMIENTO=14.61 ms | T_FRAME=92.72 ms | FPS=10.79
+
+0: 384x640 9 moringas, 34.1ms
+Speed: 3.3ms preprocess, 34.1ms inference, 5.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 622
+[PERF-3A] T_WRITE=3.602 ms
+[PERF-3A] T_READBACK=5.507 ms | T_3A=9.109 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=75.59 ms | T_PROCESAMIENTO=19.85 ms | T_FRAME=97.69 ms | FPS=10.24
+
+0: 384x640 9 moringas, 33.7ms
+Speed: 3.3ms preprocess, 33.7ms inference, 6.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=81.76 ms | T_PROCESAMIENTO=17.76 ms | T_FRAME=101.75 ms | FPS=9.83
+
+0: 384x640 8 moringas, 34.1ms
+Speed: 4.4ms preprocess, 34.1ms inference, 6.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=75.94 ms | T_PROCESAMIENTO=10.16 ms | T_FRAME=88.69 ms | FPS=11.28
+
+0: 384x640 8 moringas, 33.4ms
+Speed: 3.2ms preprocess, 33.4ms inference, 4.8ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=78.94 ms | T_PROCESAMIENTO=15.11 ms | T_FRAME=96.94 ms | FPS=10.32
+
+0: 384x640 9 moringas, 32.9ms
+Speed: 3.5ms preprocess, 32.9ms inference, 6.9ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=75.93 ms | T_PROCESAMIENTO=10.99 ms | T_FRAME=89.73 ms | FPS=11.15
+
+0: 384x640 8 moringas, 33.8ms
+Speed: 3.0ms preprocess, 33.8ms inference, 5.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=74.68 ms | T_PROCESAMIENTO=9.93 ms | T_FRAME=88.21 ms | FPS=11.34
+
+0: 384x640 9 moringas, 20.9ms
+Speed: 2.7ms preprocess, 20.9ms inference, 3.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=63.54 ms | T_PROCESAMIENTO=15.96 ms | T_FRAME=81.93 ms | FPS=12.20
+
+0: 384x640 9 moringas, 20.7ms
+Speed: 2.0ms preprocess, 20.7ms inference, 3.5ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 625
+[PERF-3A] T_WRITE=4.454 ms
+[PERF-3A] T_READBACK=5.721 ms | T_3A=10.175 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=59.55 ms | T_PROCESAMIENTO=20.72 ms | T_FRAME=83.00 ms | FPS=12.05
+
+0: 384x640 9 moringas, 19.5ms
+Speed: 3.0ms preprocess, 19.5ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.21 ms | T_PROCESAMIENTO=10.89 ms | T_FRAME=72.62 ms | FPS=13.77
+
+0: 384x640 9 moringas, 19.8ms
+Speed: 3.1ms preprocess, 19.8ms inference, 5.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 625
+[PERF-3A] T_WRITE=4.558 ms
+[PERF-3A] T_READBACK=5.155 ms | T_3A=9.713 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=83.12 ms | T_PROCESAMIENTO=21.91 ms | T_FRAME=107.41 ms | FPS=9.31
+
+0: 384x640 8 moringas, 20.6ms
+Speed: 3.8ms preprocess, 20.6ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=61.52 ms | T_PROCESAMIENTO=10.87 ms | T_FRAME=76.86 ms | FPS=13.01
+
+0: 384x640 8 moringas, 20.2ms
+Speed: 3.0ms preprocess, 20.2ms inference, 3.9ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.53 ms | T_PROCESAMIENTO=11.34 ms | T_FRAME=71.00 ms | FPS=14.08
+
+0: 384x640 8 moringas, 19.1ms
+Speed: 2.4ms preprocess, 19.1ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.74 ms | T_PROCESAMIENTO=11.47 ms | T_FRAME=72.52 ms | FPS=13.79
+
+0: 384x640 8 moringas, 19.6ms
+Speed: 2.0ms preprocess, 19.6ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 626
+[PERF-3A] T_WRITE=5.150 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=56.47 ms | T_PROCESAMIENTO=15.38 ms | T_FRAME=74.01 ms | FPS=13.51
+
+0: 384x640 8 moringas, 20.0ms
+Speed: 2.0ms preprocess, 20.0ms inference, 3.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=56.78 ms | T_PROCESAMIENTO=11.36 ms | T_FRAME=70.46 ms | FPS=14.19
+
+0: 384x640 8 moringas, 19.4ms
+Speed: 3.0ms preprocess, 19.4ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 626
+[PERF-3A] T_WRITE=4.407 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=60.78 ms | T_PROCESAMIENTO=15.77 ms | T_FRAME=78.72 ms | FPS=12.70
+
+0: 384x640 9 moringas, 20.4ms
+Speed: 2.0ms preprocess, 20.4ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 628
+[PERF-3A] T_WRITE=2.909 ms
+[PERF-3A] T_READBACK=5.179 ms | T_3A=8.088 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=59.58 ms | T_PROCESAMIENTO=19.36 ms | T_FRAME=81.29 ms | FPS=12.30
+
+0: 384x640 9 moringas, 20.0ms
+Speed: 3.0ms preprocess, 20.0ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 628
+[PERF-3A] T_WRITE=2.846 ms
+[PERF-3A] T_READBACK=4.773 ms | T_3A=7.619 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=60.73 ms | T_PROCESAMIENTO=19.32 ms | T_FRAME=82.39 ms | FPS=12.14
+
+0: 384x640 8 moringas, 20.1ms
+Speed: 2.2ms preprocess, 20.1ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=64.50 ms | T_PROCESAMIENTO=15.12 ms | T_FRAME=82.04 ms | FPS=12.19
+
+0: 384x640 7 moringas, 19.5ms
+Speed: 3.0ms preprocess, 19.5ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.57 ms | T_PROCESAMIENTO=13.79 ms | T_FRAME=79.00 ms | FPS=12.66
+
+0: 384x640 8 moringas, 19.5ms
+Speed: 3.0ms preprocess, 19.5ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.05 ms | T_PROCESAMIENTO=12.07 ms | T_FRAME=77.12 ms | FPS=12.97
+
+0: 384x640 8 moringas, 20.4ms
+Speed: 3.0ms preprocess, 20.4ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 630
+[PERF-3A] T_WRITE=6.365 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=61.96 ms | T_PROCESAMIENTO=19.32 ms | T_FRAME=83.60 ms | FPS=11.96
+
+0: 384x640 8 moringas, 19.7ms
+Speed: 3.0ms preprocess, 19.7ms inference, 3.7ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 630
+[PERF-3A] T_WRITE=5.411 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.23 ms | T_PROCESAMIENTO=15.03 ms | T_FRAME=74.76 ms | FPS=13.38
+
+0: 384x640 9 moringas, 20.2ms
+Speed: 2.5ms preprocess, 20.2ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.08 ms | T_PROCESAMIENTO=11.84 ms | T_FRAME=72.22 ms | FPS=13.85
+
+0: 384x640 8 moringas, 19.5ms
+Speed: 3.0ms preprocess, 19.5ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.44 ms | T_PROCESAMIENTO=10.51 ms | T_FRAME=70.37 ms | FPS=14.21
+
+0: 384x640 7 moringas, 20.7ms
+Speed: 2.0ms preprocess, 20.7ms inference, 2.4ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 631
+[PERF-3A] T_WRITE=6.179 ms
+[PERF-3A] T_READBACK=5.477 ms | T_3A=11.656 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=60.07 ms | T_PROCESAMIENTO=20.89 ms | T_FRAME=83.08 ms | FPS=12.04
+
+0: 384x640 7 moringas, 20.1ms
+Speed: 2.5ms preprocess, 20.1ms inference, 4.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=61.14 ms | T_PROCESAMIENTO=9.40 ms | T_FRAME=73.37 ms | FPS=13.63
+
+0: 384x640 8 moringas, 20.1ms
+Speed: 2.0ms preprocess, 20.1ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 631
+[PERF-3A] T_WRITE=4.239 ms
+[PERF-3A] T_READBACK=5.258 ms | T_3A=9.497 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=59.50 ms | T_PROCESAMIENTO=18.73 ms | T_FRAME=80.40 ms | FPS=12.44
+
+0: 384x640 8 moringas, 27.9ms
+Speed: 2.0ms preprocess, 27.9ms inference, 5.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=67.52 ms | T_PROCESAMIENTO=10.83 ms | T_FRAME=80.45 ms | FPS=12.43
+
+0: 384x640 8 moringas, 33.5ms
+Speed: 2.4ms preprocess, 33.5ms inference, 5.8ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=84.63 ms | T_PROCESAMIENTO=11.76 ms | T_FRAME=98.59 ms | FPS=10.14
+
+0: 384x640 8 moringas, 32.6ms
+Speed: 4.0ms preprocess, 32.6ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 632
+[PERF-3A] T_WRITE=3.009 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=72.92 ms | T_PROCESAMIENTO=12.59 ms | T_FRAME=88.41 ms | FPS=11.31
+
+0: 384x640 8 moringas, 19.5ms
+Speed: 2.7ms preprocess, 19.5ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 632
+[PERF-3A] T_WRITE=6.225 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=58.72 ms | T_PROCESAMIENTO=15.73 ms | T_FRAME=76.68 ms | FPS=13.04
+
+0: 384x640 8 moringas, 19.1ms
+Speed: 3.1ms preprocess, 19.1ms inference, 4.7ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 634
+[PERF-3A] T_WRITE=5.629 ms
+[PERF-3A] T_READBACK=5.557 ms | T_3A=11.186 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=59.22 ms | T_PROCESAMIENTO=20.47 ms | T_FRAME=81.90 ms | FPS=12.21
+
+0: 384x640 8 moringas, 20.0ms
+Speed: 3.3ms preprocess, 20.0ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.93 ms | T_PROCESAMIENTO=11.31 ms | T_FRAME=72.24 ms | FPS=13.84
+
+0: 384x640 8 moringas, 19.6ms
+Speed: 3.0ms preprocess, 19.6ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 634
+[PERF-3A] T_WRITE=5.336 ms
+[PERF-3A] T_READBACK=4.982 ms | T_3A=10.318 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=58.30 ms | T_PROCESAMIENTO=20.34 ms | T_FRAME=80.99 ms | FPS=12.35
+
+0: 384x640 7 moringas, 20.9ms
+Speed: 2.0ms preprocess, 20.9ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=68.16 ms | T_PROCESAMIENTO=15.38 ms | T_FRAME=86.05 ms | FPS=11.62
+
+0: 384x640 7 moringas, 19.1ms
+Speed: 3.0ms preprocess, 19.1ms inference, 4.6ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 635
+[PERF-3A] T_WRITE=5.169 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=58.90 ms | T_PROCESAMIENTO=15.56 ms | T_FRAME=77.53 ms | FPS=12.90
+
+0: 384x640 8 moringas, 20.3ms
+Speed: 2.2ms preprocess, 20.3ms inference, 3.2ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.45 ms | T_PROCESAMIENTO=10.85 ms | T_FRAME=70.59 ms | FPS=14.17
+
+0: 384x640 8 moringas, 19.4ms
+Speed: 2.0ms preprocess, 19.4ms inference, 4.7ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 635
+[PERF-3A] T_WRITE=2.869 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=56.95 ms | T_PROCESAMIENTO=13.50 ms | T_FRAME=72.78 ms | FPS=13.74
+
+0: 384x640 8 moringas, 19.6ms
+Speed: 2.5ms preprocess, 19.6ms inference, 4.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.60 ms | T_PROCESAMIENTO=10.63 ms | T_FRAME=71.55 ms | FPS=13.98
+
+0: 384x640 8 moringas, 19.8ms
+Speed: 3.0ms preprocess, 19.8ms inference, 3.2ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.95 ms | T_PROCESAMIENTO=9.74 ms | T_FRAME=70.03 ms | FPS=14.28
+
+0: 384x640 8 moringas, 20.2ms
+Speed: 2.4ms preprocess, 20.2ms inference, 3.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.43 ms | T_PROCESAMIENTO=15.01 ms | T_FRAME=77.69 ms | FPS=12.87
+
+0: 384x640 8 moringas, 19.4ms
+Speed: 2.3ms preprocess, 19.4ms inference, 3.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.10 ms | T_PROCESAMIENTO=10.37 ms | T_FRAME=72.05 ms | FPS=13.88
+
+0: 384x640 8 moringas, 19.4ms
+Speed: 3.3ms preprocess, 19.4ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.63 ms | T_PROCESAMIENTO=11.76 ms | T_FRAME=73.70 ms | FPS=13.57
+
+0: 384x640 8 moringas, 19.7ms
+Speed: 2.0ms preprocess, 19.7ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 636
+[PERF-3A] T_WRITE=2.766 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=60.46 ms | T_PROCESAMIENTO=12.20 ms | T_FRAME=74.86 ms | FPS=13.36
+
+0: 384x640 8 moringas, 19.1ms
+Speed: 2.0ms preprocess, 19.1ms inference, 3.6ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.10 ms | T_PROCESAMIENTO=11.01 ms | T_FRAME=70.33 ms | FPS=14.22
+
+0: 384x640 8 moringas, 20.4ms
+Speed: 2.0ms preprocess, 20.4ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 636
+[PERF-3A] T_WRITE=3.045 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=58.85 ms | T_PROCESAMIENTO=12.65 ms | T_FRAME=73.88 ms | FPS=13.54
+
+0: 384x640 7 moringas, 19.4ms
+Speed: 3.3ms preprocess, 19.4ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.63 ms | T_PROCESAMIENTO=9.26 ms | T_FRAME=70.40 ms | FPS=14.20
+
+0: 384x640 7 moringas, 19.6ms
+Speed: 3.5ms preprocess, 19.6ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=56.96 ms | T_PROCESAMIENTO=8.87 ms | T_FRAME=67.97 ms | FPS=14.71
+
+0: 384x640 7 moringas, 20.5ms
+Speed: 2.5ms preprocess, 20.5ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.41 ms | T_PROCESAMIENTO=9.80 ms | T_FRAME=69.69 ms | FPS=14.35
+
+0: 384x640 8 moringas, 19.0ms
+Speed: 3.2ms preprocess, 19.0ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 638
+[PERF-3A] T_WRITE=4.465 ms
+[PERF-3A] T_READBACK=5.327 ms | T_3A=9.792 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=60.88 ms | T_PROCESAMIENTO=23.92 ms | T_FRAME=86.96 ms | FPS=11.50
+
+0: 384x640 7 moringas, 20.1ms
+Speed: 2.4ms preprocess, 20.1ms inference, 3.7ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=64.65 ms | T_PROCESAMIENTO=12.25 ms | T_FRAME=79.99 ms | FPS=12.50
+
+0: 384x640 7 moringas, 19.6ms
+Speed: 3.0ms preprocess, 19.6ms inference, 4.2ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 638
+[PERF-3A] T_WRITE=2.775 ms
+[PERF-3A] T_READBACK=4.943 ms | T_3A=7.718 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=63.75 ms | T_PROCESAMIENTO=15.14 ms | T_FRAME=82.18 ms | FPS=12.17
+
+0: 384x640 7 moringas, 18.8ms
+Speed: 3.2ms preprocess, 18.8ms inference, 6.8ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 639
+[PERF-3A] T_WRITE=4.249 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=60.66 ms | T_PROCESAMIENTO=14.53 ms | T_FRAME=77.77 ms | FPS=12.86
+
+0: 384x640 7 moringas, 34.4ms
+Speed: 3.1ms preprocess, 34.4ms inference, 5.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=75.12 ms | T_PROCESAMIENTO=9.74 ms | T_FRAME=87.00 ms | FPS=11.49
+
+0: 384x640 6 moringas, 33.8ms
+Speed: 3.2ms preprocess, 33.8ms inference, 4.8ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 639
+[PERF-3A] T_WRITE=5.675 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=76.28 ms | T_PROCESAMIENTO=14.81 ms | T_FRAME=93.41 ms | FPS=10.71
+
+0: 384x640 6 moringas, 20.2ms
+Speed: 2.0ms preprocess, 20.2ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.01 ms | T_PROCESAMIENTO=8.94 ms | T_FRAME=69.16 ms | FPS=14.46
+
+0: 384x640 5 moringas, 19.9ms
+Speed: 2.0ms preprocess, 19.9ms inference, 5.9ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.97 ms | T_PROCESAMIENTO=7.21 ms | T_FRAME=69.69 ms | FPS=14.35
+
+0: 384x640 5 moringas, 20.4ms
+Speed: 1.5ms preprocess, 20.4ms inference, 4.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.66 ms | T_PROCESAMIENTO=8.05 ms | T_FRAME=68.90 ms | FPS=14.51
+
+0: 384x640 7 moringas, 19.4ms
+Speed: 2.6ms preprocess, 19.4ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 641
+[PERF-3A] T_WRITE=3.263 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.99 ms | T_PROCESAMIENTO=13.46 ms | T_FRAME=73.75 ms | FPS=13.56
+
+0: 384x640 7 moringas, 20.0ms
+Speed: 3.0ms preprocess, 20.0ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.51 ms | T_PROCESAMIENTO=9.10 ms | T_FRAME=71.37 ms | FPS=14.01
+
+0: 384x640 7 moringas, 20.1ms
+Speed: 2.0ms preprocess, 20.1ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 641
+[PERF-3A] T_WRITE=4.987 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=58.54 ms | T_PROCESAMIENTO=15.16 ms | T_FRAME=75.92 ms | FPS=13.17
+
+0: 384x640 7 moringas, 20.9ms
+Speed: 2.4ms preprocess, 20.9ms inference, 5.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=76.90 ms | T_PROCESAMIENTO=13.49 ms | T_FRAME=92.82 ms | FPS=10.77
+
+0: 384x640 7 moringas, 20.5ms
+Speed: 2.4ms preprocess, 20.5ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.01 ms | T_PROCESAMIENTO=10.16 ms | T_FRAME=69.68 ms | FPS=14.35
+
+0: 384x640 6 moringas, 20.9ms
+Speed: 2.5ms preprocess, 20.9ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.13 ms | T_PROCESAMIENTO=7.72 ms | T_FRAME=70.07 ms | FPS=14.27
+
+0: 384x640 6 moringas, 19.1ms
+Speed: 3.0ms preprocess, 19.1ms inference, 4.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.01 ms | T_PROCESAMIENTO=11.39 ms | T_FRAME=76.34 ms | FPS=13.10
+
+0: 384x640 7 moringas, 20.4ms
+Speed: 2.7ms preprocess, 20.4ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.08 ms | T_PROCESAMIENTO=9.64 ms | T_FRAME=72.00 ms | FPS=13.89
+
+0: 384x640 8 moringas, 19.9ms
+Speed: 3.0ms preprocess, 19.9ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 644
+[izquierdo] Cuchilla ABIERTA - ID 645
+[PERF-3A] T_WRITE=4.088 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF-3A] T_WRITE=5.339 ms
+[PERF-3A] T_READBACK=5.213 ms | T_3A=10.553 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=62.38 ms | T_PROCESAMIENTO=26.16 ms | T_FRAME=90.90 ms | FPS=11.00
+
+0: 384x640 8 moringas, 20.1ms
+Speed: 3.3ms preprocess, 20.1ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.33 ms | T_PROCESAMIENTO=11.43 ms | T_FRAME=77.38 ms | FPS=12.92
+
+0: 384x640 8 moringas, 19.3ms
+Speed: 3.0ms preprocess, 19.3ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 645
+[derecho] Cuchilla CERRADA - ID 644
+[PERF-3A] T_WRITE=6.819 ms
+[PERF-3A] T_READBACK=5.335 ms | T_3A=12.155 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF-3A] T_WRITE=4.959 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=60.73 ms | T_PROCESAMIENTO=27.32 ms | T_FRAME=90.76 ms | FPS=11.02
+
+0: 384x640 7 moringas, 19.1ms
+Speed: 4.4ms preprocess, 19.1ms inference, 4.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.27 ms | T_PROCESAMIENTO=9.27 ms | T_FRAME=71.10 ms | FPS=14.07
+
+0: 384x640 7 moringas, 19.8ms
+Speed: 2.0ms preprocess, 19.8ms inference, 3.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.82 ms | T_PROCESAMIENTO=9.36 ms | T_FRAME=70.57 ms | FPS=14.17
+
+0: 384x640 7 moringas, 20.2ms
+Speed: 2.4ms preprocess, 20.2ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=63.37 ms | T_PROCESAMIENTO=10.66 ms | T_FRAME=76.20 ms | FPS=13.12
+
+0: 384x640 7 moringas, 19.0ms
+Speed: 3.0ms preprocess, 19.0ms inference, 3.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=59.39 ms | T_PROCESAMIENTO=10.56 ms | T_FRAME=72.14 ms | FPS=13.86
+
+0: 384x640 8 moringas, 19.0ms
+Speed: 3.0ms preprocess, 19.0ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.74 ms | T_PROCESAMIENTO=11.22 ms | T_FRAME=71.58 ms | FPS=13.97
+
+0: 384x640 8 moringas, 20.0ms
+Speed: 2.1ms preprocess, 20.0ms inference, 4.4ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 646
+[izquierdo] Cuchilla ABIERTA - ID 648
+[PERF-3A] T_WRITE=6.200 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF-3A] T_WRITE=5.320 ms
+[PERF-3A] T_READBACK=5.394 ms | T_3A=10.713 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=58.28 ms | T_PROCESAMIENTO=26.81 ms | T_FRAME=87.56 ms | FPS=11.42
+
+0: 384x640 8 moringas, 19.7ms
+Speed: 2.0ms preprocess, 19.7ms inference, 4.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=67.12 ms | T_PROCESAMIENTO=14.68 ms | T_FRAME=84.10 ms | FPS=11.89
+
+0: 384x640 8 moringas, 20.1ms
+Speed: 3.0ms preprocess, 20.1ms inference, 3.3ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 646
+[izquierdo] Cuchilla CERRADA - ID 648
+[PERF-3A] T_WRITE=3.291 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF-3A] T_WRITE=4.913 ms
+[PERF-3A] T_READBACK=5.336 ms | T_3A=10.250 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=59.26 ms | T_PROCESAMIENTO=23.97 ms | T_FRAME=85.48 ms | FPS=11.70
+
+0: 384x640 7 moringas, 21.9ms
+Speed: 2.2ms preprocess, 21.9ms inference, 6.2ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.96 ms | T_PROCESAMIENTO=9.43 ms | T_FRAME=74.73 ms | FPS=13.38
+
+0: 384x640 7 moringas, 34.7ms
+Speed: 3.3ms preprocess, 34.7ms inference, 5.0ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=75.61 ms | T_PROCESAMIENTO=9.57 ms | T_FRAME=87.27 ms | FPS=11.46
+
+0: 384x640 7 moringas, 35.0ms
+Speed: 3.9ms preprocess, 35.0ms inference, 6.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=82.33 ms | T_PROCESAMIENTO=10.65 ms | T_FRAME=95.37 ms | FPS=10.49
+
+0: 384x640 8 moringas, 19.9ms
+Speed: 2.4ms preprocess, 19.9ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.22 ms | T_PROCESAMIENTO=10.39 ms | T_FRAME=73.05 ms | FPS=13.69
+
+0: 384x640 9 moringas, 19.1ms
+Speed: 3.0ms preprocess, 19.1ms inference, 3.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=62.33 ms | T_PROCESAMIENTO=16.08 ms | T_FRAME=80.63 ms | FPS=12.40
+
+0: 384x640 9 moringas, 19.1ms
+Speed: 3.6ms preprocess, 19.1ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 649
+[PERF-3A] T_WRITE=6.978 ms
+[PERF-3A] T_READBACK=5.503 ms | T_3A=12.481 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=61.91 ms | T_PROCESAMIENTO=22.19 ms | T_FRAME=86.99 ms | FPS=11.50
+
+0: 384x640 9 moringas, 19.7ms
+Speed: 2.1ms preprocess, 19.7ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 650
+[PERF-3A] T_WRITE=6.752 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.33 ms | T_PROCESAMIENTO=17.51 ms | T_FRAME=77.10 ms | FPS=12.97
+
+0: 384x640 9 moringas, 19.6ms
+Speed: 2.6ms preprocess, 19.6ms inference, 3.5ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 649
+[derecho] Cuchilla CERRADA - ID 650
+[PERF-3A] T_WRITE=3.520 ms
+[PERF-3A] T_READBACK=5.223 ms | T_3A=8.742 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF-3A] T_WRITE=5.108 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=55.95 ms | T_PROCESAMIENTO=23.11 ms | T_FRAME=81.11 ms | FPS=12.33
+
+0: 384x640 8 moringas, 19.3ms
+Speed: 2.5ms preprocess, 19.3ms inference, 2.8ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.20 ms | T_PROCESAMIENTO=9.87 ms | T_FRAME=72.43 ms | FPS=13.81
+
+0: 384x640 9 moringas, 19.2ms
+Speed: 3.2ms preprocess, 19.2ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=55.80 ms | T_PROCESAMIENTO=11.59 ms | T_FRAME=69.53 ms | FPS=14.38
+
+0: 384x640 9 moringas, 19.1ms
+Speed: 3.1ms preprocess, 19.1ms inference, 3.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.27 ms | T_PROCESAMIENTO=11.52 ms | T_FRAME=70.92 ms | FPS=14.10
+
+0: 384x640 9 moringas, 19.4ms
+Speed: 2.5ms preprocess, 19.4ms inference, 4.6ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.30 ms | T_PROCESAMIENTO=11.86 ms | T_FRAME=72.35 ms | FPS=13.82
+
+0: 384x640 9 moringas, 19.2ms
+Speed: 2.2ms preprocess, 19.2ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.44 ms | T_PROCESAMIENTO=12.07 ms | T_FRAME=74.66 ms | FPS=13.39
+
+0: 384x640 9 moringas, 19.1ms
+Speed: 2.2ms preprocess, 19.1ms inference, 5.5ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 653
+[PERF-3A] T_WRITE=3.336 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=61.56 ms | T_PROCESAMIENTO=15.48 ms | T_FRAME=79.23 ms | FPS=12.62
+
+0: 384x640 9 moringas, 19.5ms
+Speed: 2.7ms preprocess, 19.5ms inference, 4.8ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 653
+[PERF-3A] T_WRITE=2.832 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=60.85 ms | T_PROCESAMIENTO=13.82 ms | T_FRAME=76.86 ms | FPS=13.01
+
+0: 384x640 10 moringas, 20.1ms
+Speed: 2.0ms preprocess, 20.1ms inference, 4.7ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 654
+[PERF-3A] T_WRITE=5.150 ms
+[PERF-3A] T_READBACK=5.367 ms | T_3A=10.518 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=61.63 ms | T_PROCESAMIENTO=22.11 ms | T_FRAME=85.97 ms | FPS=11.63
+
+0: 384x640 10 moringas, 19.8ms
+Speed: 2.7ms preprocess, 19.8ms inference, 4.6ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.84 ms | T_PROCESAMIENTO=12.32 ms | T_FRAME=74.02 ms | FPS=13.51
+
+0: 384x640 8 moringas, 19.9ms
+Speed: 3.0ms preprocess, 19.9ms inference, 3.6ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla CERRADA - ID 654
+[PERF-3A] T_WRITE=2.736 ms
+[PERF-3A] T_READBACK=4.454 ms | T_3A=7.190 ms | CMD=True | OUT=True
+[PLC] CMD_Cuchilla_Izquierda = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Izquierda
+[PERF] T_YOLO=60.50 ms | T_PROCESAMIENTO=16.04 ms | T_FRAME=78.79 ms | FPS=12.69
+
+0: 384x640 8 moringas, 19.4ms
+Speed: 3.4ms preprocess, 19.4ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 655
+[PERF-3A] T_WRITE=7.197 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.70 ms | T_PROCESAMIENTO=17.46 ms | T_FRAME=77.36 ms | FPS=12.93
+
+0: 384x640 8 moringas, 19.4ms
+Speed: 3.0ms preprocess, 19.4ms inference, 3.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=58.18 ms | T_PROCESAMIENTO=10.94 ms | T_FRAME=71.88 ms | FPS=13.91
+
+0: 384x640 8 moringas, 20.3ms
+Speed: 2.2ms preprocess, 20.3ms inference, 3.6ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 655
+[PERF-3A] T_WRITE=5.162 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=57.43 ms | T_PROCESAMIENTO=15.80 ms | T_FRAME=76.48 ms | FPS=13.08
+
+0: 384x640 8 moringas, 19.5ms
+Speed: 3.5ms preprocess, 19.5ms inference, 3.8ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.67 ms | T_PROCESAMIENTO=11.45 ms | T_FRAME=71.34 ms | FPS=14.02
+
+0: 384x640 8 moringas, 18.7ms
+Speed: 3.1ms preprocess, 18.7ms inference, 4.3ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=61.01 ms | T_PROCESAMIENTO=10.98 ms | T_FRAME=74.52 ms | FPS=13.42
+
+0: 384x640 9 moringas, 19.1ms
+Speed: 3.3ms preprocess, 19.1ms inference, 3.6ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.91 ms | T_PROCESAMIENTO=11.61 ms | T_FRAME=72.10 ms | FPS=13.87
+
+0: 384x640 9 moringas, 19.7ms
+Speed: 2.9ms preprocess, 19.7ms inference, 4.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=57.79 ms | T_PROCESAMIENTO=10.96 ms | T_FRAME=71.20 ms | FPS=14.05
+
+0: 384x640 9 moringas, 19.6ms
+Speed: 4.3ms preprocess, 19.6ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.93 ms | T_PROCESAMIENTO=14.50 ms | T_FRAME=77.62 ms | FPS=12.88
+
+0: 384x640 8 moringas, 33.0ms
+Speed: 3.1ms preprocess, 33.0ms inference, 6.6ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla ABIERTA - ID 656
+[PERF-3A] T_WRITE=4.243 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=75.56 ms | T_PROCESAMIENTO=15.04 ms | T_FRAME=93.22 ms | FPS=10.73
+
+0: 384x640 9 moringas, 33.5ms
+Speed: 4.0ms preprocess, 33.5ms inference, 6.7ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=81.34 ms | T_PROCESAMIENTO=17.28 ms | T_FRAME=100.80 ms | FPS=9.92
+
+0: 384x640 9 moringas, 19.9ms
+Speed: 3.7ms preprocess, 19.9ms inference, 4.0ms postprocess per image at shape (1, 3, 384, 640)
+[derecho] Cuchilla CERRADA - ID 656
+[PERF-3A] T_WRITE=6.432 ms
+[PLC] CMD_Cuchilla_Derecha = True
+[PLC] Cuchilla CERRADA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=66.69 ms | T_PROCESAMIENTO=21.42 ms | T_FRAME=91.02 ms | FPS=10.99
+
+0: 384x640 8 moringas, 19.8ms
+Speed: 3.3ms preprocess, 19.8ms inference, 3.5ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=61.38 ms | T_PROCESAMIENTO=9.98 ms | T_FRAME=74.40 ms | FPS=13.44
+
+0: 384x640 8 moringas, 19.5ms
+Speed: 2.0ms preprocess, 19.5ms inference, 4.1ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=56.65 ms | T_PROCESAMIENTO=10.94 ms | T_FRAME=70.00 ms | FPS=14.29
+
+0: 384x640 8 moringas, 20.4ms
+Speed: 2.0ms preprocess, 20.4ms inference, 6.4ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=60.80 ms | T_PROCESAMIENTO=10.96 ms | T_FRAME=74.85 ms | FPS=13.36
+
+0: 384x640 8 moringas, 19.0ms
+Speed: 3.0ms preprocess, 19.0ms inference, 3.9ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=61.55 ms | T_PROCESAMIENTO=9.46 ms | T_FRAME=73.26 ms | FPS=13.65
+
+0: 384x640 8 moringas, 20.0ms
+Speed: 2.5ms preprocess, 20.0ms inference, 3.8ms postprocess per image at shape (1, 3, 384, 640)
+[PERF] T_YOLO=56.36 ms | T_PROCESAMIENTO=9.88 ms | T_FRAME=69.72 ms | FPS=14.34
+
+0: 384x640 8 moringas, 19.4ms
+Speed: 3.3ms preprocess, 19.4ms inference, 3.1ms postprocess per image at shape (1, 3, 384, 640)
+[izquierdo] Cuchilla ABIERTA - ID 658
+[derecho] Cuchilla ABIERTA - ID 657
+[PERF-3A] T_WRITE=4.959 ms
+[PERF-3A] T_READBACK=4.979 ms | T_3A=9.938 ms | CMD=False | OUT=False
+[PLC] CMD_Cuchilla_Izquierda = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Izquierda
+[PERF-3A] T_WRITE=5.414 ms
+[PLC] CMD_Cuchilla_Derecha = False
+[PLC] Cuchilla ABIERTA -> CMD_Cuchilla_Derecha
+[PERF] T_YOLO=56.18 ms | T_PROCESAMIENTO=24.29 ms | T_FRAME=82.68 ms | FPS=12.09
+[PLC] Conexión cerrada
