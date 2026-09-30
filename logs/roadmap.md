@@ -320,3 +320,99 @@ distancia de anticipación = velocidad × latencia
 Preparar y ejecutar el **Experimento 3B** sin confundir el readback de
 `Local:1:O.Data.0` con una medición eléctrica del borne físico.
 
+# Actualización del Roadmap — Baseline GPU E-PIM-L_07
+
+**Corte: 30/09/2026**
+
+## Fase 7 — Optimización
+
+**Estado: baseline de cómputo actualizado.**
+
+Completado adicionalmente:
+
+- Se definió `E-PIM-L_07` como PC oficial para las pruebas en tractor.
+- Se verificó disponibilidad de CUDA y detección de la RTX 3050 Ti.
+- Se fijó `device=0` en `model.track()` para solicitar explícitamente CUDA GPU 0.
+- Se validó el cambio mediante tres corridas independientes.
+- Las corridas 4 a 6 acumulan 558 frames y mantienen aproximadamente
+  `T_YOLO ≈ 41.4 ms`, `T_FRAME ≈ 50.5 ms` y `FPS ≈ 19.9`.
+- `T_3A` permanece alrededor de `9.7 ms`, por lo que el cambio de
+  rendimiento se concentra en visión y no altera de forma importante el
+  camino EtherNet/IP/readback.
+
+Configuración que se conserva:
+
+```python
+results = model.track(
+    frame,
+    persist=True,
+    device=0
+)[0]
+```
+
+Pendiente de optimización, sólo después de las mediciones físicas:
+
+- Evaluar escrituras redundantes.
+- Revisar arquitectura de threads y `join()`.
+- Implementar reconexión/timeouts robustos.
+- Evaluar optimizaciones adicionales de inferencia únicamente si las
+  pruebas reales lo requieren.
+
+## Fase 9 — Latencia extremo a extremo y pruebas dinámicas
+
+**Estado: Experimento 3A completado y baseline oficial actualizado.**
+
+Referencia actual:
+
+```text
+PC: E-PIM-L_07
+CPU: Intel Core i9-12900H
+GPU: NVIDIA GeForce RTX 3050 Ti Laptop GPU 4 GB
+RAM: 16 GB
+YOLO device: 0
+
+T_YOLO:  ~41.4 ms
+T_FRAME: ~50.5 ms
+FPS:     ~19.9
+T_3A:    ~9.7 ms
+```
+
+### Experimento 3B — Salida eléctrica física
+
+**Estado: siguiente hito.**
+
+Medir con una referencia externa la transición eléctrica real de la
+salida física asociada a `Local:1:O.Data.0`. La prueba debe distinguir
+el readback por CIP de la transición real del borne.
+
+### Experimento 3C — Movimiento mecánico
+
+**Estado: pendiente después de 3B.**
+
+Medir el tiempo desde el evento de control hasta que la cuchilla alcanza
+una posición mecánicamente segura, separando apertura y cierre.
+
+### Calibración física `D_OPEN` / `D_CLOSE`
+
+**Estado: pendiente después de 3B y 3C.**
+
+Integrar:
+
+```text
+latencia de adquisición / visión
+latencia de decisión y control
+latencia eléctrica
+latencia mecánica
+velocidad de avance
+distancia cámara-cuchilla
+margen de seguridad
+```
+
+para determinar la anticipación física de apertura y el cierre seguro.
+
+## Próximo hito
+
+Preparar y ejecutar el **Experimento 3B**. No utilizar `T_3A` como si
+fuera la latencia física total de la cuchilla; `T_3A` termina en el
+readback de `Local:1:O.Data.0`.
+
