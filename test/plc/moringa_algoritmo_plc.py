@@ -76,7 +76,13 @@ class MoringaAlgoritmo():
         self.plc_ip = "192.168.1.10"
 
         # Tags BOOL creados en Studio 5000
-        self.tag_izquierdo = "CMD_Cuchilla_Izquierda"
+        # Cuchilla izquierda: electroválvula de dos órdenes mutuamente excluyentes.
+        # AVANCE  = cerrar cuchillas / desmalezar
+        # RETROCESO = abrir cuchillas / proteger moringa
+        self.tag_avance_izq = "CMD_ON_Cuchilla_Izquierda"
+        self.tag_retroceso_izq = "CMD_OFF_Cuchilla_Izquierda"
+
+        # El canal derecho se conserva sin cambios por ahora.
         self.tag_derecho = "CMD_Cuchilla_Derecha"
 
         # Lock adicional para proteger la comunicación con el PLC
@@ -85,7 +91,8 @@ class MoringaAlgoritmo():
         # Conexión persistente
         self.plc = None
 
-        self.tag_salida_izquierda = "Local:1:O.Data.0"
+        # NOTA: las direcciones físicas de AVANCE y RETROCESO se mantienen
+        # gestionadas en Ladder. Python escribe únicamente los Controller Tags.
 
     # ================================================================
     # VISIÓN
@@ -114,62 +121,21 @@ class MoringaAlgoritmo():
     # ================================================================
 
     def escribir_tag(self, tag, valor):
+        """Escritura simple. Se conserva para el canal derecho y pruebas."""
         try:
             with self.lock_plc:
-
                 if self.plc is None:
                     print("[PLC] No existe conexión con el PLC")
                     return False
 
-                # ==========================================
-                # INICIO EXPERIMENTO 3A
-                # ==========================================
                 t0 = time.perf_counter()
-
                 resultado = self.plc.write(tag, valor)
-
                 t1 = time.perf_counter()
 
-                tiempo_write_ms = (t1 - t0) * 1000
-
                 print(
-                    f"[PERF-3A] "
-                    f"T_WRITE={tiempo_write_ms:.3f} ms"
+                    f"[PERF] T_WRITE={((t1 - t0) * 1000):.3f} ms | "
+                    f"{tag}={valor}"
                 )
-
-                # ------------------------------------------
-                # READBACK SOLO PARA CUCHILLA IZQUIERDA
-                # ------------------------------------------
-                if tag == "CMD_Cuchilla_Izquierda":
-
-                    lectura = self.plc.read(
-                        self.tag_salida_izquierda
-                    )
-
-                    t2 = time.perf_counter()
-
-                    tiempo_readback_ms = (t2 - t1) * 1000
-                    tiempo_3a_ms = (t2 - t0) * 1000
-
-                    print(
-                        f"[PERF-3A] "
-                        f"T_READBACK={tiempo_readback_ms:.3f} ms | "
-                        f"T_3A={tiempo_3a_ms:.3f} ms | "
-                        f"CMD={valor} | "
-                        f"OUT={lectura.value}"
-                    )
-
-                    if lectura.value != valor:
-                        print(
-                            f"[PERF-3A][WARNING] "
-                            f"CMD={valor} pero "
-                            f"{self.tag_salida_izquierda}="
-                            f"{lectura.value}"
-                        )
-
-                # ==========================================
-                # FIN EXPERIMENTO 3A
-                # ==========================================
 
             if resultado:
                 print(f"[PLC] {tag} = {valor}")
@@ -182,42 +148,125 @@ class MoringaAlgoritmo():
             print(f"[PLC] Error de comunicación: {error}")
             return False
 
+    def escribir_estado_cuchilla_izquierda(self, avance, retroceso, accion):
+        """
+        Escribe las dos órdenes de la electroválvula izquierda en una misma
+        llamada de pycomm3. La combinación AVANCE=1 / RETROCESO=1 está
+        prohibida por software.
+        """
+        if avance and retroceso:
+            print(
+                "[PLC][ERROR] Estado inválido: "
+                "AVANCE y RETROCESO no pueden estar activos simultáneamente"
+            )
+            return False
+
+        try:
+            with self.lock_plc:
+                if self.plc is None:
+                    print("[PLC] No existe conexión con el PLC")
+                    return False
+
+                t0 = time.perf_counter()
+
+                # Se envían ambas consignas juntas:
+                # cerrar -> AVANCE=1, RETROCESO=0
+                # abrir  -> AVANCE=0, RETROCESO=1
+                resultados = self.plc.write(
+                    (self.tag_avance_izq, avance),
+                    (self.tag_retroceso_izq, retroceso)
+                )
+
+                t1 = time.perf_counter()
+                tiempo_write_ms = (t1 - t0) * 1000
+
+                # Readback de los Controller Tags para comprobar la consigna.
+                # Esto NO sustituye la futura medición 3B de las salidas físicas.
+                lecturas = self.plc.read(
+                    self.tag_avance_izq,
+                    self.tag_retroceso_izq
+                )
+                t2 = time.perf_counter()
+
+                valor_avance = lecturas[0].value
+                valor_retroceso = lecturas[1].value
+
+                tiempo_readback_ms = (t2 - t1) * 1000
+                tiempo_3a_ms = (t2 - t0) * 1000
+
+                print(
+                    f"[PERF-3A-{accion}] "
+                    f"T_WRITE={tiempo_write_ms:.3f} ms | "
+                    f"T_READBACK={tiempo_readback_ms:.3f} ms | "
+                    f"T_3A={tiempo_3a_ms:.3f} ms | "
+                    f"AVANCE={valor_avance} | "
+                    f"RETROCESO={valor_retroceso}"
+                )
+
+                if (valor_avance != avance or
+                        valor_retroceso != retroceso):
+                    print(
+                        f"[PERF-3A-{accion}][WARNING] "
+                        f"Esperado AVANCE={avance}, RETROCESO={retroceso}; "
+                        f"leído AVANCE={valor_avance}, "
+                        f"RETROCESO={valor_retroceso}"
+                    )
+                    return False
+
+                if valor_avance and valor_retroceso:
+                    print(
+                        "[PLC][CRITICAL] Readback inválido: "
+                        "AVANCE=1 y RETROCESO=1"
+                    )
+                    return False
+
+                return all(bool(r) for r in resultados)
+
+        except Exception as error:
+            print(f"[PLC] Error de comunicación: {error}")
+            return False
+
     # ================================================================
-    # CONTROL CUCHILLAS
+    # CONTROL CUCHILLA IZQUIERDA - ELECTROVÁLVULA
     # ================================================================
+
+    def cerrar_cuchilla_izquierda(self):
+        """AVANCE: cerrar cuchillas para desmalezar."""
+        ok = self.escribir_estado_cuchilla_izquierda(
+            avance=True,
+            retroceso=False,
+            accion="CIERRE"
+        )
+        if ok:
+            print(
+                "[PLC] Cuchilla izquierda CERRADA / DESMALEZAR -> "
+                "AVANCE=1, RETROCESO=0"
+            )
+        return ok
+
+    def abrir_cuchilla_izquierda(self):
+        """RETROCESO: abrir cuchillas para proteger la moringa."""
+        ok = self.escribir_estado_cuchilla_izquierda(
+            avance=False,
+            retroceso=True,
+            accion="APERTURA"
+        )
+        if ok:
+            print(
+                "[PLC] Cuchilla izquierda ABIERTA / PROTEGER -> "
+                "AVANCE=0, RETROCESO=1"
+            )
+        return ok
 
     def encender_gpio(self, tag_lado):
-
-        """
-        TRUE = cuchilla cerrada
-        TRUE = desmalezar
-        """
-
-        self.escribir_tag(
-            tag_lado,
-            True
-        )
-
-        print(
-            f"[PLC] Cuchilla CERRADA -> {tag_lado}"
-        )
-
+        """Compatibilidad temporal para el canal derecho: TRUE=cerrar."""
+        self.escribir_tag(tag_lado, True)
+        print(f"[PLC] Cuchilla CERRADA -> {tag_lado}")
 
     def apagar_gpio(self, tag_lado):
-
-        """
-        FALSE = cuchilla abierta
-        FALSE = proteger moringa
-        """
-
-        self.escribir_tag(
-            tag_lado,
-            False
-        )
-
-        print(
-            f"[PLC] Cuchilla ABIERTA -> {tag_lado}"
-        )
+        """Compatibilidad temporal para el canal derecho: FALSE=abrir."""
+        self.escribir_tag(tag_lado, False)
+        print(f"[PLC] Cuchilla ABIERTA -> {tag_lado}")
 
     def conectar_plc(self):
         try:
@@ -442,11 +491,14 @@ class MoringaAlgoritmo():
                     id_moringa
                 )
 
-                # FALSE en el Tag
-                self.apagar_gpio(
-                    tag_lado
-                )
-
+                if lado == "izquierdo":
+                    # RETROCESO: abrir / proteger moringa
+                    self.abrir_cuchilla_izquierda()
+                else:
+                    # Canal derecho conservado temporalmente con lógica anterior
+                    # self.apagar_gpio(tag_lado)
+                    print("Lado derecho del frame deshabilitado")
+                    
                 conteo_abiertas["total"] += 1
 
 
@@ -471,11 +523,13 @@ class MoringaAlgoritmo():
                     id_moringa
                 )
 
-                # TRUE en el Tag
-                self.encender_gpio(
-                    tag_lado
-                )
-
+                if lado == "izquierdo":
+                    # AVANCE: cerrar / desmalezar
+                    self.cerrar_cuchilla_izquierda()
+                else:
+                    # Canal derecho conservado temporalmente con lógica anterior
+                    # self.encender_gpio(tag_lado)
+                    print("Lado derecho del frame deshabilitado")
                 conteo_cerradas["total"] += 1
 
 
@@ -814,7 +868,7 @@ class MoringaAlgoritmo():
 
                                 self.lock_izq,
 
-                                self.tag_izquierdo
+                                self.tag_avance_izq
                             )
                         )
                     )
