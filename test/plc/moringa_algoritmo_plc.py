@@ -20,7 +20,7 @@ class MoringaAlgoritmo():
         # ============================================================
 
         self.modelo_path = "C:/Users/E-PIM-L_07/Documents/JorgeProyectos/MoringaCIP/models/best_moringa_1.pt"
-        self.video_path = "C:/Users/E-PIM-L_07/Documents/JorgeProyectos/utils/videos/moringa_1_video.mp4"
+        self.video_path = "C:/Users/E-PIM-L_07/Documents/JorgeProyectos/utils/videos/moringa_1_video_x15.mp4"
 
         self.track_history = defaultdict(lambda: [])
 
@@ -644,23 +644,22 @@ class MoringaAlgoritmo():
     # ================================================================
 
     def main(self):
+        model = self.cargar_modelo(self.modelo_path)
+        cap = self.cargar_video(self.video_path)
 
-        model = self.cargar_modelo(
-            self.modelo_path
-        )
-
-        cap = self.cargar_video(
-            self.video_path
-        )
+        # FPS del video (el x8 tendrá un valor bajo, p. ej. 3.75)
+        fps_video = cap.get(cv2.CAP_PROP_FPS)
+        if fps_video <= 0:
+            fps_video = 30.0  # respaldo si el archivo no trae FPS
+        tiempo_objetivo_frame = 1.0 / fps_video
+        print(f"[VIDEO] FPS del archivo: {fps_video:.2f}")
 
         self.conectar_plc()
 
         while cap.isOpened():
-
             inicio_frame = time.perf_counter()
 
             success, frame = cap.read()
-
             if not success:
                 break
 
@@ -934,24 +933,20 @@ class MoringaAlgoritmo():
                 f"FPS={fps_real:.2f}"
             )
 
-            cv2.imshow(
-                "Moringa Algoritmo",
-                annotated_frame
-            )
+            fin_frame = time.perf_counter()
+            # (aquí van tus prints de [PERF], para medir solo el procesamiento real)
 
+            cv2.imshow("Moringa Algoritmo", annotated_frame)
 
-            if (
-                cv2.waitKey(1)
-                & 0xFF
-                ==
-                ord("q")
-            ):
+            # Esperar solo el tiempo que sobra para respetar el FPS del video
+            transcurrido = time.perf_counter() - inicio_frame
+            espera_ms = max(1, int((tiempo_objetivo_frame - transcurrido) * 1000))
+
+            if cv2.waitKey(espera_ms) & 0xFF == ord("q"):
                 break
 
         self.desconectar_plc()
-        
         cap.release()
-
         cv2.destroyAllWindows()
 
 
