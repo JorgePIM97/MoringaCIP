@@ -416,3 +416,87 @@ Preparar y ejecutar el **Experimento 3B**. No utilizar `T_3A` como si
 fuera la latencia física total de la cuchilla; `T_3A` termina en el
 readback de `Local:1:O.Data.0`.
 
+# Actualización 2026-10-02 — Ruta después de validación con electroválvulas
+
+## Fase 9A — Mando bidireccional de la cuchilla izquierda
+
+**Estado: completado.**
+
+- [x] Crear/usar `CMD_ON_Cuchilla_Izquierda` para AVANCE.
+- [x] Crear/usar `CMD_OFF_Cuchilla_Izquierda` para RETROCESO.
+- [x] Vincular AVANCE a `Local:1:O.Data.1`.
+- [x] Vincular RETROCESO a `Local:1:O.Data.0`.
+- [x] Validar cierre/desmalezado con estado `1/0`.
+- [x] Validar apertura/protección con estado `0/1`.
+- [x] Impedir por software el estado `1/1`.
+- [x] Deshabilitar escritura PLC del lado derecho durante el experimento.
+
+## Fase 9B — Repetición formal del Experimento 3A
+
+**Estado: completado.**
+
+- [x] Repetir 3A en E-PIM_15 con la lógica bidireccional.
+- [x] Ejecutar 3A en E-PIM-L_07 con electroválvulas conectadas.
+- [x] Confirmar actuación física de AVANCE y RETROCESO.
+- [x] Registrar por separado apertura y cierre.
+- [x] Ejecutar prueba x15 para observación funcional de la carrera del pistón.
+
+La prueba x15 no debe utilizarse para inferir la ventana temporal real del
+tractor ni para calibrar directamente `D_OPEN`/`D_CLOSE`.
+
+## Experimento 3B — Salida eléctrica física de 24 V
+
+**Estado: siguiente hito.**
+
+Objetivo: medir con instrumentación externa el intervalo entre el evento de
+control y la transición eléctrica real de las dos órdenes físicas:
+
+```text
+AVANCE     -> Local:1:O.Data.1
+RETROCESO  -> Local:1:O.Data.0
+```
+
+Requisitos del ensayo:
+
+- medir AVANCE y RETROCESO por separado;
+- distinguir flanco de activación y desactivación;
+- verificar que no exista solapamiento eléctrico `1/1`;
+- no confundir readback CIP con transición real del borne;
+- utilizar adaptación eléctrica adecuada para señales de 24 V.
+
+## Experimento 3C — Movimiento neumático/mecánico
+
+**Estado: pendiente después de 3B.**
+
+Objetivo: medir el tiempo real hasta alcanzar una posición segura de
+apertura y de cierre.
+
+Se deben separar como mínimo:
+
+```text
+T_open_mech
+T_close_mech
+```
+
+La presión y regulación neumática deberán estar en una condición conocida y
+repetible antes de formalizar estas mediciones.
+
+## Fase posterior — D_OPEN / D_CLOSE
+
+Con 3B y 3C medidos, integrar:
+
+```text
+adquisición de frame
+YOLO/tracking
+decisión
+CIP/PLC
+salida eléctrica
+electroválvula
+movimiento del pistón/cuchilla
+velocidad del tractor
+geometría cámara-cuchilla
+margen de seguridad
+```
+
+No usar el factor x15 como sustituto de la velocidad física del tractor.
+
