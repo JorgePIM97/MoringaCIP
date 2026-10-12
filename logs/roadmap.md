@@ -500,3 +500,85 @@ margen de seguridad
 
 No usar el factor x15 como sustituto de la velocidad física del tractor.
 
+# Actualización 2026-10-12 — Continuidad de desarrollo e integración de app
+
+## Referencia de implementación
+
+**Estado: definida por el responsable del proyecto.** El algoritmo maestro
+es `test/plc/moringa_algoritmo_plc.py`. La versión de IA incluida en `app/`
+es anterior y su sustitución/integración queda pendiente. La revisión de
+esta fecha fue estática y no agrega validaciones de hardware.
+
+## Interfaz de configuración y operación
+
+**Estado: prototipo incorporado y revisado.**
+
+Disponible en código:
+
+- Interfaz PyQt6 con pantallas de configuración, operación y prueba de cámara.
+- Persistencia del serial de la cámara izquierda en JSON.
+- Captura RealSense de color/profundidad a 848×480 y 60 FPS configurados.
+- Hilos separados de cámara e IA, con procesamiento del frame más reciente.
+- YOLO/tracking, anotaciones y conteos para dos regiones de la imagen.
+
+Pendiente de validación en ejecución:
+
+- Arranque, cambio entre pantallas, parada y cierre de cámara e IA.
+- Comportamiento ante serial ausente/inválido y desconexión de cámara.
+- Respuesta de la interfaz durante carga del modelo e inferencia.
+
+## Preparación para incorporar el maestro
+
+**Estado: pendiente; integración prevista para una etapa posterior.**
+
+- [ ] Completar las dependencias de app y hacer portables sus rutas.
+- [ ] Parametrizar resolución, regiones y umbrales para la cámara real.
+- [ ] Definir la configuración del dispositivo de inferencia.
+- [ ] Separar captura, visión y comunicación PLC para compartir la lógica
+      del maestro con la interfaz y evitar mantener versiones divergentes.
+- [ ] Integrar conexión persistente y mando bidireccional izquierdo,
+      conservando el canal derecho sin órdenes hasta su validación.
+- [ ] Distinguir eventos de visión, órdenes enviadas y confirmaciones PLC
+      para que los conteos no oculten fallos de comunicación.
+- [ ] Incorporar métricas de adquisición, visión, procesamiento y PLC;
+      documentar qué Tag se usa para readback en cada ensayo.
+- [ ] Definir manejo de errores, reconexión y comportamiento de parada
+      junto con las condiciones de habilitación/interlocks del PLC.
+- [ ] Validar primero el procesamiento sin actuación y después repetir
+      las pruebas de integración con el hardware correspondiente.
+
+## Mediciones físicas pendientes
+
+Se mantiene la secuencia 3B → 3C → calibración `D_OPEN`/`D_CLOSE`.
+El readback del maestro actual confirma Controller Tags de comando;
+no equivale a leer la imagen de salida ni a medir la transición eléctrica.
+Las mediciones históricas deben conservar su punto de lectura y condiciones
+para permitir comparaciones correctas.
+
+## Próximos hitos
+
+- Desarrollo de software: preparar configuración y geometría de app para
+  la futura incorporación del algoritmo maestro.
+- Validación física: ejecutar 3B para AVANCE/RETROCESO y posteriormente
+  3C, manteniendo documentadas las condiciones neumáticas del ensayo.
+
+## Avance de integración — 2026-10-12
+
+**Estado: implementación en app completada; validación física pendiente.**
+
+- [x] Adaptar la lógica al frame de 848×480 y umbral y=240.
+- [x] Fijar `device=0` en la inferencia de la interfaz.
+- [x] Incorporar conexión persistente y mando bidireccional izquierdo.
+- [x] Conservar el canal derecho sin escrituras PLC.
+- [x] Confirmar consignas por readback y no contar órdenes fallidas.
+- [x] Cargar el modelo desde el hilo de IA y cerrar la conexión al terminar.
+- [x] Incorporar métricas por frame y escritura/readback.
+- [x] Verificar comportamiento con ocho pruebas simuladas y sintaxis Python.
+- [ ] Validar la interfaz con RealSense, CUDA y PLC reales.
+- [ ] Definir el estado de parada y recuperación de comunicación con automatización.
+- [ ] Unificar la lógica compartida entre maestro y app en un módulo común.
+
+La implementación actual detiene el hilo ante errores y cierra la conexión;
+no envía una consigna adicional al parar ni realiza reconexión automática.
+La confirmación de Tags de comando no sustituye 3B/3C.
+

@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MoringaMain</class>
+ <widget class="QMainWindow" name="MoringaMain">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Moringa Control</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>221</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="2" column="1">
+      <widget class="QToolButton" name="Finalizar_toolButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Acabar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="MenuPrincipal_lbl">
+       <property name="text">
+        <string>Menu Principal</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="QToolButton" name="Configurar_toolButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Configurar Trabajo</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QToolButton" name="Iniciar_toolButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Iniciar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>140</y>
+      <width>781</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="page">
+     <widget class="QLabel" name="Configuracion_lbl">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Configuracion</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Rancho_lbl">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>120</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Rancho</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Parcela_lbl">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>200</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Parcela</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Etapa_lbl">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Etapa de Cultivo</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AlturaCamara_lbl">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>330</y>
+        <width>111</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Altura Inicial Camara</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>79</x>
+        <y>510</y>
+        <width>601</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QToolButton" name="ConfirmarDatos_lineEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Confirmar Datos de Arranque</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLineEdit" name="Rancho_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>120</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Parcela_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>190</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="Etapa_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>270</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="AlturaCamara_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>370</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_2">
+     <widget class="QWidget" name="horizontalLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>520</y>
+        <width>651</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="FrameCamIzquierda_lbl">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>30</y>
+        <width>640</width>
+        <height>480</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>CamaraIzq</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_5">
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CamaraConfig</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="SerialCamIzq_lbl">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>50</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>No. Serial Camara Izquierda:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="GuardarSeriales_btn">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>100</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PushButton</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>40</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>No. Seriales Configurados</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="CamaraIzq_lbl">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>90</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Camara Izquierda:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="SerialCamIzquierda_lbl">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>90</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="SerialCamIzquierda_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>50</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="CamaraPruebaIzquierda_lbl">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>160</y>
+        <width>480</width>
+        <height>360</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>CamaraIzq</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>550</y>
+        <width>155</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Probar Conexion</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>550</y>
+        <width>155</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Desconectar</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_3">
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>281</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Desmalezadora de Moringa</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QToolButton" name="ConfigurarCamaras_toolButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>510</y>
+      <width>221</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Configurar Camaras</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>Configurar_toolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>showConfigurar()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>121</x>
+     <y>309</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>272</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Finalizar_toolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>detenerIA()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>200</x>
+     <y>395</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>203</x>
+     <y>375</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Iniciar_toolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>iniciarIA()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>70</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>68</x>
+     <y>377</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ConfirmarDatos_lineEdit</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>confirmarDatos()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>401</x>
+     <y>657</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>273</x>
+     <y>669</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ConfigurarCamaras_toolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>showConfigurarCamaras()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>201</x>
+     <y>647</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>645</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GuardarSeriales_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>guardarSeriales()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>251</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>233</x>
+     <y>387</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>testCamarasOn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>705</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>751</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>testCamarasOff()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>780</x>
+     <y>695</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>778</x>
+     <y>754</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>showConfigurar()</slot>
+  <slot>detenerIA()</slot>
+  <slot>iniciarIA()</slot>
+  <slot>confirmarDatos()</slot>
+  <slot>showCamaraIzquierda()</slot>
+  <slot>showCamaraDerecha()</slot>
+  <slot>showConfigurarCamaras()</slot>
+  <slot>guardarSeriales()</slot>
+  <slot>testCamarasOn()</slot>
+  <slot>testCamarasOff()</slot>
+ </slots>
+</ui>

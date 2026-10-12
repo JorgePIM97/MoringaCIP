@@ -916,3 +916,115 @@ medirlo antes de calcular definitivamente `D_OPEN` y `D_CLOSE`.
 - Prueba x15 utilizada únicamente para observación funcional.
 - Próximo experimento: 3B, seguido de 3C.
 
+# Actualización 2026-10-12 — Revisión inicial de app y referencia de integración
+
+## Alcance de la revisión
+
+Se revisaron `logs/development.md`, `logs/roadmap.md`, `logs/dev_log.csv`,
+los archivos de `app/` y `test/plc/moringa_algoritmo_plc.py` para establecer
+el contexto de continuidad del desarrollo con Codex. La revisión fue
+estática: no se ejecutaron la interfaz, la cámara ni conexiones al PLC.
+Los resultados físicos y de rendimiento anteriores conservan las fechas
+y condiciones de sus ensayos; esta revisión no constituye una nueva prueba.
+
+## Algoritmo maestro
+
+Por indicación del responsable del proyecto, la referencia funcional para
+la futura integración es `test/plc/moringa_algoritmo_plc.py`. El algoritmo
+de `app/controlador/threads/ia_thread.py` corresponde a una versión anterior.
+La incorporación del maestro a la interfaz queda pendiente.
+
+El maestro mantiene YOLO/tracking con `device=0`, entrada desde video,
+geometría prevista de 1280×720, división horizontal en x=640 y referencia
+vertical y=500. Usa puntos de apertura/cierre en y−20 e y+20 y control por
+`track_id`. La conexión `LogixDriver` es persistente y está protegida por
+un lock de comunicación.
+
+El mando izquierdo conserva las dos consignas:
+
+| Acción | CMD_ON_Cuchilla_Izquierda | CMD_OFF_Cuchilla_Izquierda | Mapeo documentado en Ladder |
+| --- | --- | --- | --- |
+| Cerrar / desmalezar | 1 | 0 | AVANCE → Local:1:O.Data.1 |
+| Abrir / proteger | 0 | 1 | RETROCESO → Local:1:O.Data.0 |
+
+Python rechaza la combinación 1/1. Las escrituras del canal derecho están
+deshabilitadas, aunque se conservan tracking, visualización y conteos.
+
+## Arquitectura actual de app
+
+- `app/main.py`: ventana PyQt6, navegación entre configuración, operación
+  y prueba de cámara; carga/guardado del serial y arranque/parada de hilos.
+- `app/vista/ui/plantillas/moringa.ui`: diseño de Qt Designer;
+  `moringa.py` es su archivo Python generado.
+- `app/controlador/threads/camara_thread.py`: captura RealSense, entrega
+  imagen cruda a la interfaz o envía frames al hilo de IA cuando está activo.
+- `app/controlador/camara/realsense_depth.py`: captura color y profundidad
+  a 848×480 y 60 FPS configurados, además de acelerómetro y giroscopio.
+- `app/controlador/threads/ia_thread.py`: YOLO/tracking en un QThread,
+  almacenamiento del frame más reciente, anotaciones y conteos por lado.
+- `app/seriales.json`: configuración del serial de la cámara izquierda.
+
+La interfaz implementa actualmente una cámara izquierda. El hilo de IA
+divide su imagen en dos regiones, con x=424 e y=240 como referencias.
+No contiene comunicación PLC: las aperturas y cierres son eventos
+impresos y contabilizados. La profundidad se captura, pero no se utiliza
+para decidir aperturas/cierres en el hilo de IA revisado.
+
+## Diferencias y observaciones para la integración
+
+1. La geometría de video del maestro difiere de la captura RealSense.
+   Los umbrales deben parametrizarse y validarse para la entrada real;
+   copiar y=500 a una imagen de 480 px no conserva el comportamiento.
+2. La app no fija explícitamente el dispositivo de inferencia ni incorpora
+   la instrumentación de tiempos del maestro.
+3. Existen rutas absolutas específicas de E-PIM_15, E-PIM-L_07 y directorios
+   antiguos. Modelo, video, seriales y reportes requieren configuración portable.
+4. `iniciarIA()` carga el modelo desde el hilo de la interfaz antes de
+   iniciar el QThread; esa carga puede bloquear temporalmente la ventana.
+5. El maestro registra IDs y aumenta conteos de eventos sin condicionar
+   esos registros al éxito de la orden PLC. Los conteos actuales no deben
+   interpretarse como confirmación de actuación física.
+6. El maestro actual realiza readback de los Controller Tags
+   `CMD_ON_Cuchilla_Izquierda` y `CMD_OFF_Cuchilla_Izquierda`. Las primeras
+   mediciones 3A documentadas leían `Local:1:O.Data.0`. Por tanto, deben
+   identificarse el punto de lectura y la versión al comparar resultados:
+   leer consignas no confirma la ejecución de Ladder ni la salida física.
+7. `requirements.txt` incluye visión, RealSense y pycomm3, pero no declara
+   `PyQt6` ni `pyqtgraph`, importados por la interfaz.
+
+## Estado de continuidad
+
+Se establece el maestro como referencia para integrar la interfaz más
+adelante. Quedan pendientes la integración PLC en app, la validación del
+ciclo de vida de cámara/IA, el manejo de fallos y la configuración portable.
+El siguiente hito físico sigue siendo 3B, seguido de 3C y calibración
+`D_OPEN`/`D_CLOSE`. No se incorporaron cambios funcionales durante esta revisión.
+
+## Integración en app — 2026-10-12
+
+Se integró en `IAThread` el mando bidireccional izquierdo del maestro,
+conservando captura prevista de 848×480, división x=424, umbral y=240,
+puntos y−20/y+20 y tracking persistente. La inferencia usa `device=0`.
+La conexión persistente a `192.168.1.10` se abre al iniciar el hilo de IA
+y se cierra en `finally` al detenerlo o ante un fallo. La carga del modelo
+también ocurre en ese hilo; la ruta del modelo se resuelve desde el proyecto.
+
+Las consignas de apertura son AVANCE=0/RETROCESO=1 y las de cierre
+AVANCE=1/RETROCESO=0. Se rechaza 1/1, se verifican los resultados de ambas
+escrituras y se leen ambos Controller Tags para confirmar las consignas.
+Se conservan métricas de escritura/readback y procesamiento por frame.
+El canal derecho mantiene anotaciones y conteos sin órdenes PLC.
+
+El procesamiento por detección ocurre en orden dentro del QThread para
+propagar fallos al ciclo principal. Ante fallo de visión/escritura/readback,
+el hilo informa a la interfaz y termina. Los eventos izquierdos solo se
+contabilizan después de la confirmación de consigna. La interrupción solicitada
+evita iniciar nuevas escrituras. La parada cierra la conexión sin enviar una
+consigna adicional: no se ha definido un estado mecánico seguro de parada.
+Los interlocks de Ladder y las mediciones físicas siguen pendientes de validación.
+
+Validación: ocho pruebas con adaptadores simulados verifican órdenes,
+geometría/umbral, CUDA explícito, exclusión 1/1, ausencia de órdenes derechas,
+fallos de escritura/readback, interrupción y cierre de conexión ante errores.
+Se verificó sintaxis Python. No se ejecutaron cámara, GPU ni PLC reales.
+
