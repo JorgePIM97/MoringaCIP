@@ -23,8 +23,6 @@ class MoringaMain(QMainWindow, Ui_MoringaMain):
         self.serial_repository = SerialRepository()
         self.plc_repository = PLCRepository()
         self.plc_test_thread = None
-        self.tag_fin_retroceso = None  # Tag BOOL del sensor físico; pendiente de definir.
-        self.valor_fin_retroceso = True
         self.vision_session = VisionSession(
             self.recibir_frame_izquierdo, self.recibir_frame_ia, self.mostrar_error,
         )
@@ -128,9 +126,7 @@ class MoringaMain(QMainWindow, Ui_MoringaMain):
             return
         try:
             ip = self.plc_repository.validar(self.IngresarIP_lineEdit.text())
-            servicio = PLCTest(ip, self.tag_fin_retroceso, self.valor_fin_retroceso)
-            if accion == "apagar" and not self.tag_fin_retroceso:
-                raise ValueError("Falta definir el tag del sensor de fin de retroceso para apagar con confirmación física.")
+            servicio = PLCTest(ip, medir=True)
         except ValueError as error:
             QMessageBox.warning(self, "Configuración PLC", str(error))
             return
@@ -152,6 +148,16 @@ class MoringaMain(QMainWindow, Ui_MoringaMain):
     def _resultadoPLC(self, avance, retroceso):
         self.ComunicacionPLC_label.setText("Conectado")
         self.ComunicacionPLC_label.setStyleSheet("background-color: #36ad55; color: black;")
+        servicio = self.plc_test_thread.servicio
+        if servicio.mediciones:
+            resumen = "; ".join(
+                f"Pistón {fila['piston']}: {fila['tiempo_ms']} ms"
+                if fila["estado"] == "completado" else
+                f"Pistón {fila['piston']}: sensor ya activo"
+                for fila in servicio.mediciones)
+            self.ComunicacionPLC_label.setToolTip(f"{resumen}\nCSV: {servicio.csv_path}")
+        else:
+            self.ComunicacionPLC_label.setToolTip("")
         for label, activo in ((self.AvanceEstado_label, avance),
                               (self.RetrocesoEstado_label, retroceso)):
             label.setText("Orden activa" if activo else "Orden inactiva")

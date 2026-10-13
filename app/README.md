@@ -47,12 +47,44 @@ la IA está activa. La prueba de comunicación lee los dos tags de mando sin
 escribir; los indicadores muestran consignas, no posiciones físicas.
 
 `PLCTest` desactiva el sentido opuesto antes de activar avance o retroceso.
-Para apagar, ordena retroceso, espera el sensor BOOL (máximo 10 segundos) y
-después desactiva ambos mandos. Configurar `tag_fin_retroceso` y
-`valor_fin_retroceso` en `MoringaMain` con el tag real y su polaridad.
-Mientras falte ese dato, el botón Apagar informa que falta configuración
-y no envía órdenes. Un timeout mantiene la consigna de retroceso e informa
-el fallo. No se envían órdenes adicionales al salir de la pantalla.
+Para apagar, ordena retroceso, espera los dos sensores BOOL de retroceso
+(máximo 10 segundos) y después desactiva ambos mandos. Un timeout mantiene
+la consigna de retroceso e informa el fallo. No se envían órdenes adicionales
+al salir de la pantalla.
+
+### Medición temporal para pruebas de pistones
+
+Los botones Avanzar, Retroceder y Apagar usan `PLCTest(..., medir=True)`.
+Se conserva el mando común izquierdo para ambos pistones y se leen:
+
+| Movimiento | Pistón 1 | Pistón 2 |
+| --- | --- | --- |
+| Avance | `tag_piston_1_avance` | `tag_piston_2_avance` |
+| Retroceso | `tag_piston_1_retroceso` | `tag_piston_2_retroceso` |
+
+Los cuatro tags deben ser BOOL, con `True` al alcanzar el extremo.
+Cada orden agrega dos filas a `logs/pruebas_tiempos_pistones.csv`, creado
+automáticamente, sin sobrescribir las pruebas anteriores. Incluye un ID
+común de operación, fecha con zona horaria, IP, acción, movimiento, pistón,
+sensor, estado inicial, tiempo en milisegundos y estado del resultado.
+El tiempo empieza justo antes de enviar la escritura que activa el sentido
+y termina al recibir la lectura del sensor activo. Cada pistón se mide
+independientemente con reloj monotónico de alta resolución.
+
+Se consulta cada 10 ms más el tiempo de comunicación; la medida incluye
+escritura, procesamiento del PLC y lectura por red. No equivale a una
+medición tomada dentro del PLC ni garantiza resolución de 10 ms.
+`timeout` e `intervalo` pueden ajustarse en el constructor de `PLCTest`.
+Los tiempos completados aparecen también al colocar el cursor sobre el
+indicador Conectado.
+
+Si el sensor ya estaba activo antes de la orden, se registra
+`sensor_ya_activo` sin tiempo: para medir un recorrido completo primero
+llevar los pistones al extremo opuesto. `timeout` y `error` tampoco llevan
+tiempo de recorrido; los resultados de pistones que sí terminaron se conservan.
+La ventana espera a que termine la prueba antes de permitir otra orden.
+La prueba de comunicación no mueve los pistones ni genera mediciones.
+Esta instrumentación corresponde a pruebas manuales; no modifica el ciclo de IA.
 
 Ingresar la IPv4 en `IngresarIP_lineEdit` y pulsar Guardar IP, conectado
 desde Designer al slot `saveIP()`. La configuración se guarda en

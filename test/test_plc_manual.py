@@ -1,5 +1,8 @@
 import sys
 import unittest
+import csv
+from tempfile import TemporaryDirectory
+from unittest.mock import patch
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -65,3 +68,56 @@ class ManualPLCTests(unittest.TestCase):
             self.service(plc, tag_retraido="sensor", timeout=0).ejecutar("apagar")
         self.assertTrue(plc.values[PLCTest.RETROCESO])
         self.assertTrue(plc.closed)
+
+    def test_measures_each_piston_and_appends_csv(self):
+        plc = FakePLC()
+        tags = PLCTest.SENSORES["avance"]
+        plc.values.update(dict.fromkeys(tags, False))
+        original_read = plc.read
+        readings = iter([(False, False), (True, False), (True, True),
+                         (True, True), (True, True)])
+
+        def read(*requested):
+            if requested == tags:
+                plc.values.update(zip(tags, next(readings)))
+            return original_read(*requested)
+
+        plc.read = read
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "tiempos.csv"
+            service = self.service(plc, medir=True, csv_path=path)
+            with patch("controlador.plc_test.time.perf_counter", side_effect=[1, 1.02, 1.05]):
+                service.ejecutar("avance")
+            self.assertEqual([r["tiempo_ms"] for r in service.mediciones], [20, 50])
+            service.ejecutar("avance")
+            with path.open(encoding="utf-8", newline="") as file:
+                rows = list(csv.DictReader(file))
+            self.assertEqual(len(rows), 4)
+            self.assertEqual([r["estado"] for r in rows],
+                             ["completado", "completado", "sensor_ya_activo", "sensor_ya_activo"])
+            self.assertEqual(rows[2]["tiempo_ms"], "")
+
+    def test_measured_shutdown_requires_both_sensors_and_logs_timeout(self):
+        plc = FakePLC()
+        tags = PLCTest.SENSORES["retroceso"]
+        plc.values.update({tags[0]: True, tags[1]: False})
+        with TemporaryDirectory() as directory:
+            path = Path(directory) / "tiempos.csv"
+            service = self.service(plc, medir=True, csv_path=path, timeout=0)
+            with self.assertRaises(RuntimeError):
+                service.ejecutar("apagar")
+            self.assertTrue(plc.values[PLCTest.RETROCESO])
+            self.assertEqual([r["estado"] for r in service.mediciones],
+                             ["sensor_ya_activo", "timeout"])
+            plc.values[tags[1]] = True
+            self.assertEqual(service.ejecutar("apagar"), (False, False))
+
+    def test_invalid_sensor_prevents_movement(self):
+        plc = FakePLC()
+        plc.values.update(dict.fromkeys(PLCTest.SENSORES["avance"], 1))
+        with TemporaryDirectory() as directory:
+            service = self.service(plc, medir=True, csv_path=Path(directory) / "tiempos.csv")
+            with self.assertRaises(RuntimeError):
+                service.ejecutar("avance")
+            self.assertEqual(plc.writes, [])
+            self.assertTrue(plc.closed)
