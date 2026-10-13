@@ -41,6 +41,19 @@ Pruebas sin hardware: `python -m unittest discover -s test -p "test_*.py" -v`.
 
 ## Dirección IP del PLC
 
+Las pruebas manuales usan la IP del campo de configuración y se ejecutan
+en `PLCTestThread`, sin bloquear la ventana. No pueden ejecutarse mientras
+la IA está activa. La prueba de comunicación lee los dos tags de mando sin
+escribir; los indicadores muestran consignas, no posiciones físicas.
+
+`PLCTest` desactiva el sentido opuesto antes de activar avance o retroceso.
+Para apagar, ordena retroceso, espera el sensor BOOL (máximo 10 segundos) y
+después desactiva ambos mandos. Configurar `tag_fin_retroceso` y
+`valor_fin_retroceso` en `MoringaMain` con el tag real y su polaridad.
+Mientras falte ese dato, el botón Apagar informa que falta configuración
+y no envía órdenes. Un timeout mantiene la consigna de retroceso e informa
+el fallo. No se envían órdenes adicionales al salir de la pantalla.
+
 Ingresar la IPv4 en `IngresarIP_lineEdit` y pulsar Guardar IP, conectado
 desde Designer al slot `saveIP()`. La configuración se guarda en
 `app/plc.json` con la clave `plc_ip` y se recupera al abrir la ventana.

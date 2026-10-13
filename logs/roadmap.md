@@ -603,3 +603,31 @@ entre el maestro y la interfaz continúa como trabajo posterior.
 Los cambios de IP se aplican al siguiente inicio de IA. La prueba real de
 comunicación desde la pantalla PLC continúa pendiente.
 
+## Pruebas manuales PLC y pistones — 2026-10-13
+
+**Estado: comunicación, avance y retroceso implementados; validación física pendiente.**
+
+- [x] Implementar los slots existentes de prueba de comunicación y mando izquierdo.
+- [x] Ejecutar operaciones en un hilo y actualizar indicadores de consignas.
+- [x] Desactivar el sentido opuesto antes de activar el solicitado y verificar readback.
+- [x] Evitar concurrencia entre pruebas manuales e IA.
+- [x] Completar 21 pruebas sin hardware, incluyendo cinco de control manual.
+- [ ] Validar comunicación, avance y retroceso desde la pantalla con el PLC real.
+
+### Apagado de pistones — pendiente acordado
+
+Solo existen los tags de mando `CMD_ON_Cuchilla_Izquierda` y
+`CMD_OFF_Cuchilla_Izquierda`. No existe confirmación física de fin de retroceso.
+
+- [ ] Corroborar el tiempo real necesario para completar el retroceso.
+- [ ] Corroborar el comportamiento de la válvula con ambos mandos en False
+      y si el pistón permanece retraído.
+- [ ] Con esos datos, definir e implementar la secuencia de retroceso y
+      posterior apagado; no asumir que el readback confirma posición física.
+- [ ] Validar físicamente la secuencia acordada.
+
+Por decisión del responsable, este paso queda pendiente. El camino provisional
+exige un sensor sin configurar y no envía órdenes de apagado. No se ha
+implementado un retardo temporal ni validado la permanencia en retroceso.
+Se conserva la secuencia de mediciones físicas 3B → 3C → calibración.
+

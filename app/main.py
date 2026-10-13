@@ -8,6 +8,8 @@ from controlador.navegation.screen_navegation import ScreenNavegation
 from controlador.configuracion.serial_repository import SerialRepository
 from controlador.configuracion.plc_repository import PLCRepository
 from controlador.vision_session import VisionSession
+from controlador.plc_test import PLCTest
+from controlador.threads.plc_test_thread import PLCTestThread
 
 
 class MoringaMain(QMainWindow, Ui_MoringaMain):
@@ -20,6 +22,9 @@ class MoringaMain(QMainWindow, Ui_MoringaMain):
         self.screen_navigation.screen_principal()
         self.serial_repository = SerialRepository()
         self.plc_repository = PLCRepository()
+        self.plc_test_thread = None
+        self.tag_fin_retroceso = None  # Tag BOOL del sensor físico; pendiente de definir.
+        self.valor_fin_retroceso = True
         self.vision_session = VisionSession(
             self.recibir_frame_izquierdo, self.recibir_frame_ia, self.mostrar_error,
         )
@@ -37,6 +42,9 @@ class MoringaMain(QMainWindow, Ui_MoringaMain):
         self._iniciarCamaras(self.recibir_frame_izquierdo)
 
     def iniciarIA(self):
+        if self.plc_test_thread is not None:
+            QMessageBox.warning(self, "PLC ocupado", "Espera a que termine la prueba del PLC.")
+            return
         try:
             self.vision_session.iniciar_ia(self.plc_repository.cargar())
         except ValueError as error:
@@ -90,18 +98,78 @@ class MoringaMain(QMainWindow, Ui_MoringaMain):
 
     def testComunicacionPLC(self):
         """
-        Solo prueba comu
+        Solo prueba comunicacion con el PLC
+        Si hay comunicación ComunicacionPLC_label debe de cambiar de color a verde
+        Si no hay comunicación ComunicacionPLC_label debe de cambiar de color a rojo
         """
-        pass
+        self._probarPLC("comunicacion")
 
     def activarAvancePistones(self):
-        pass
+        """
+        En el avance plc.write("CMD_OFF_Cuchilla_Izquierda", False) y plc.write("CMD_ON_Cuchilla_Izquierda", True)
+        """
+        self._probarPLC("avance")
 
     def activarRetrocesoPistones(self):
-        pass
+        """En el avance plc.write("CMD_OFF_Cuchilla_Izquierda", True) y plc.write("CMD_ON_Cuchilla_Izquierda", False)"""
+        self._probarPLC("retroceso")
 
     def apagarPistones(self):
-        pass
+        """Se debe asegurar que los pistones terminaron en retroceso y luego En el avance plc.write("CMD_OFF_Cuchilla_Izquierda", False) y plc.write("CMD_ON_Cuchilla_Izquierda", False)
+        de manera que estén apagados por seguridad
+        """
+        self._probarPLC("apagar")
+
+    def _probarPLC(self, accion):
+        if self.plc_test_thread is not None:
+            return
+        if self.vision_session.ia is not None and self.vision_session.ia.isRunning():
+            QMessageBox.warning(self, "PLC ocupado", "Detén la IA antes de probar el PLC manualmente.")
+            return
+        try:
+            ip = self.plc_repository.validar(self.IngresarIP_lineEdit.text())
+            servicio = PLCTest(ip, self.tag_fin_retroceso, self.valor_fin_retroceso)
+            if accion == "apagar" and not self.tag_fin_retroceso:
+                raise ValueError("Falta definir el tag del sensor de fin de retroceso para apagar con confirmación física.")
+        except ValueError as error:
+            QMessageBox.warning(self, "Configuración PLC", str(error))
+            return
+        self.plc_test_thread = PLCTestThread(servicio, accion, self)
+        self.plc_test_thread.resultado.connect(self._resultadoPLC)
+        self.plc_test_thread.error.connect(self._errorPLC)
+        self.plc_test_thread.finished.connect(self._finPruebaPLC)
+        self._botonesPLC(False)
+        self.ComunicacionPLC_label.setText("Probando...")
+        self.ComunicacionPLC_label.setStyleSheet("background-color: #e6ae32;")
+        self.plc_test_thread.start()
+
+    def _botonesPLC(self, habilitar):
+        for boton in (self.ProbarComunicacion_pushButton, self.AvanzarPistones_pushButton,
+                      self.RetrocederPistones_pushButton, self.ApagarPistones_pushButton,
+                      self.GuardarIP_pushButton):
+            boton.setEnabled(habilitar)
+
+    def _resultadoPLC(self, avance, retroceso):
+        self.ComunicacionPLC_label.setText("Conectado")
+        self.ComunicacionPLC_label.setStyleSheet("background-color: #36ad55; color: black;")
+        for label, activo in ((self.AvanceEstado_label, avance),
+                              (self.RetrocesoEstado_label, retroceso)):
+            label.setText("Orden activa" if activo else "Orden inactiva")
+            label.setStyleSheet("background-color: #36ad55;" if activo else "background-color: #dddddd;")
+            label.setToolTip("Lectura del mando del PLC; no confirma posición física.")
+
+    def _errorPLC(self, mensaje):
+        self.ComunicacionPLC_label.setText("Error PLC")
+        self.ComunicacionPLC_label.setStyleSheet("background-color: #dd4545; color: white;")
+        for label in (self.AvanceEstado_label, self.RetrocesoEstado_label):
+            label.setText("Desconocido")
+            label.setStyleSheet("")
+        self.mostrar_error(mensaje)
+
+    def _finPruebaPLC(self):
+        self.plc_test_thread.deleteLater()
+        self.plc_test_thread = None
+        self._botonesPLC(True)
 
 
     def _iniciarCamaras(self, slot_izquierda):
@@ -144,6 +212,10 @@ class MoringaMain(QMainWindow, Ui_MoringaMain):
         QMessageBox.critical(self, "Error del sistema de visi?n / PLC", msg)
 
     def closeEvent(self, event):
+        if self.plc_test_thread is not None:
+            QMessageBox.warning(self, "PLC ocupado", "Espera a que termine la operación del PLC antes de cerrar.")
+            event.ignore()
+            return
         self.detenerIA()
         event.accept()
 

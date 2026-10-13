@@ -1067,3 +1067,48 @@ Designer, recuperación al reabrir, rechazo de IPv4 inválida sin sobrescribir
 el valor previo y transferencia al hilo. Se conserva la regresión IA/PLC.
 Sin comunicación con PLC real durante las pruebas.
 
+## Pruebas manuales de PLC y pistones — 2026-10-13
+
+Se implementaron los slots `testComunicacionPLC()`,
+`activarAvancePistones()` y `activarRetrocesoPistones()` de `main.py`,
+conservando las conexiones existentes de Qt Designer. `PLCTest` gestiona
+la comunicación mediante `LogixDriver` y `PLCTestThread` ejecuta las
+operaciones sin bloquear la ventana. Se utiliza la IPv4 ingresada en el
+campo de configuración. La prueba de comunicación lee los dos mandos
+sin escribir; el indicador se muestra verde al obtener una lectura válida
+y rojo ante errores. Los indicadores de avance/retroceso muestran las
+consignas leídas, no la posición física del pistón.
+
+El mando manual desactiva primero el sentido opuesto, comprueba cada
+escritura y verifica las consignas por readback. No se permite ejecutar
+pruebas manuales mientras la IA está activa ni iniciar IA durante una
+operación manual. Se evita cerrar la ventana mientras la operación está
+en curso. La conexión de prueba se cierra al finalizar.
+
+Validación: 21 pruebas sin hardware satisfactorias, incluyendo cinco nuevas
+para lectura sin escrituras, cambio a retroceso sin mandos simultáneos,
+rechazo de apagado sin sensor, secuencia de apagado con sensor simulado
+y timeout sin declarar apagado. No se probó la comunicación ni la actuación
+física desde esta pantalla.
+
+### Apagado pendiente por decisión del responsable
+
+El responsable confirma que únicamente están definidos
+`CMD_ON_Cuchilla_Izquierda` (avance) y `CMD_OFF_Cuchilla_Izquierda`
+(retroceso); no hay un tag de confirmación física de fin de retroceso.
+Estos dos tags permiten ordenar el movimiento, pero su lectura no confirma
+que el pistón haya terminado el recorrido.
+
+Se acuerda dejar pendiente el apagado hasta corroborar el tiempo real de
+retroceso y el comportamiento de la válvula con ambos mandos en False.
+La alternativa a evaluar es AVANCE=False → RETROCESO=True → esperar el
+tiempo validado → ambos mandos=False. No se seleccionó un tiempo ni se
+implementó esa alternativa; tampoco se confirmó que el pistón conserve
+la posición retraída al desenergizar la válvula.
+
+El código provisional de `apagarPistones()` exige un sensor configurable,
+actualmente sin definir, y por ello informa que falta configuración sin
+enviar órdenes. Las pruebas de ese camino usan un sensor simulado y no
+representan una capacidad disponible en el PLC actual. El apagado no se
+considera completado ni validado físicamente.
+
