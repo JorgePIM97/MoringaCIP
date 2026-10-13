@@ -44,7 +44,7 @@ def load_thread():
 class ControlTests(unittest.TestCase):
     def setUp(self):
         cls, self.namespace = load_thread()
-        self.ia = cls()
+        self.ia = cls(plc_ip="192.168.1.25")
         self.ia.plc = Mock()
 
     def readings(self, avance, retroceso):

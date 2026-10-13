@@ -582,3 +582,24 @@ La implementación actual detiene el hilo ante errores y cierra la conexión;
 no envía una consigna adicional al parar ni realiza reconexión automática.
 La confirmación de Tags de comando no sustituye 3B/3C.
 
+## Modularización de app — 2026-10-13
+
+- [x] Separar navegación sobre el stackedWidget existente.
+- [x] Separar persistencia de seriales y presentación de frames.
+- [x] Centralizar propiedad y ciclo de vida de cámara/IA en VisionSession.
+- [x] Conservar los slots conectados por Qt Designer y sus archivos generados.
+- [x] Verificar navegación de la ventana y mantener regresión de visión/PLC.
+
+Queda pendiente la validación con hardware. La extracción de una lógica común
+entre el maestro y la interfaz continúa como trabajo posterior.
+
+## Configuración PLC — 2026-10-13
+
+- [x] Guardar IPv4 desde `IngresarIP_lineEdit` mediante `saveIP()`.
+- [x] Recuperar configuración al abrir y pasarla a IA sin dirección fija.
+- [x] Validar entradas y bloquear arranque sin IP guardada.
+- [x] Verificar persistencia y transferencia mediante pruebas sin hardware.
+
+Los cambios de IP se aplican al siguiente inicio de IA. La prueba real de
+comunicación desde la pantalla PLC continúa pendiente.
+

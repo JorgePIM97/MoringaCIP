@@ -14,11 +14,11 @@ class IAThread(QThread):
     resultado_signal = pyqtSignal(np.ndarray)
     error_signal     = pyqtSignal(str)
 
-    def __init__(self, parent=None):
+    def __init__(self, plc_ip, parent=None):
         super().__init__(parent)
 
         self.modelo_path = str(Path(__file__).resolve().parents[3] / "models" / "best_moringa_1.pt")
-        self.plc_ip = "192.168.1.10"
+        self.plc_ip = plc_ip
         self.tag_avance_izq = "CMD_ON_Cuchilla_Izquierda"
         self.tag_retroceso_izq = "CMD_OFF_Cuchilla_Izquierda"
         self.plc = None

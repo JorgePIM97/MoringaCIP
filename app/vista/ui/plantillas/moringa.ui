@@ -85,13 +85,13 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QLabel" name="Configuracion_lbl">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>350</x>
         <y>10</y>
         <width>91</width>
         <height>21</height>
@@ -260,8 +260,8 @@
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>340</x>
+        <y>20</y>
         <width>81</width>
         <height>16</height>
        </rect>
@@ -273,8 +273,8 @@
      <widget class="QLabel" name="SerialCamIzq_lbl">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>50</y>
+        <x>50</x>
+        <y>70</y>
         <width>151</width>
         <height>16</height>
        </rect>
@@ -286,8 +286,8 @@
      <widget class="QPushButton" name="GuardarSeriales_btn">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>100</y>
+        <x>220</x>
+        <y>120</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -299,8 +299,8 @@
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>40</y>
+        <x>470</x>
+        <y>60</y>
         <width>141</width>
         <height>20</height>
        </rect>
@@ -312,8 +312,8 @@
      <widget class="QLabel" name="CamaraIzq_lbl">
       <property name="geometry">
        <rect>
-        <x>410</x>
-        <y>90</y>
+        <x>420</x>
+        <y>110</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -325,8 +325,8 @@
      <widget class="QLabel" name="SerialCamIzquierda_lbl">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>90</y>
+        <x>550</x>
+        <y>110</y>
         <width>141</width>
         <height>16</height>
        </rect>
@@ -338,8 +338,8 @@
      <widget class="QLineEdit" name="SerialCamIzquierda_lineEdit">
       <property name="geometry">
        <rect>
-        <x>200</x>
-        <y>50</y>
+        <x>210</x>
+        <y>70</y>
         <width>113</width>
         <height>20</height>
        </rect>
@@ -349,7 +349,7 @@
       <property name="geometry">
        <rect>
         <x>140</x>
-        <y>160</y>
+        <y>170</y>
         <width>480</width>
         <height>360</height>
        </rect>
@@ -384,19 +384,250 @@
        <string>Desconectar</string>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="page_3">
-     <widget class="QLabel" name="label_3">
+     <widget class="QPushButton" name="ExitConfigCamara_pushButton">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>20</y>
-        <width>281</width>
-        <height>91</height>
+        <x>10</x>
+        <y>10</y>
+        <width>131</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
-       <string>Desmalezadora de Moringa</string>
+       <string>Salir</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_3">
+     <widget class="QLabel" name="ConfigurarPLC_label">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>10</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Configurar Comunicación PLC</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ProbarPistones_label">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>180</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Probar Pistones</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="AvanzarPistones_pushButton">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>240</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Avanzar Pistones</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="RetrocederPistones_pushButton">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>320</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Retroceder Pistones</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ApagarPistones_pushButton">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>280</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Apagar Pistones</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Avance_label">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>480</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Avance</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Retroceso_label">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>530</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Retroceso</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="EstadoPistones_label">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>410</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Estado de Pistones</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AvanceEstado_label">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>480</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="RetrocesoEstado_label">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>530</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="IngresarIP_lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>70</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="IngresarIP_label">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>60</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ingrese IP Address PLC</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>60</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="GuardarIP_pushButton">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>120</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Guardar IP</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="IP_label">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>60</y>
+        <width>71</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>IP Address PLC</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ComunicacionPLC_label">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>260</y>
+        <width>71</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Probar Comunicación</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ProbarComunicacion_pushButton">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>280</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Probar Comunicación</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ExitConfigPLC_pushButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Salir</string>
       </property>
      </widget>
     </widget>
@@ -412,6 +643,19 @@
     </property>
     <property name="text">
      <string>Configurar Camaras</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="showProbarEthernetIP_toolButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>630</y>
+      <width>221</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Probar Comunicación PLC</string>
     </property>
    </widget>
   </widget>
@@ -505,8 +749,8 @@
    <slot>guardarSeriales()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>463</x>
-     <y>251</y>
+     <x>473</x>
+     <y>271</y>
     </hint>
     <hint type="destinationlabel">
      <x>233</x>
@@ -546,6 +790,134 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>showProbarEthernetIP_toolButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>showConfigurarPLC()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>61</x>
+     <y>676</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-2</x>
+     <y>709</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ExitConfigCamara_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>exitConfigCamara()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>261</x>
+     <y>165</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>234</x>
+     <y>165</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ExitConfigPLC_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>exitConfigPLC()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>294</x>
+     <y>165</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>237</x>
+     <y>192</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GuardarIP_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>saveIP()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>461</x>
+     <y>283</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>444</x>
+     <y>129</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ProbarComunicacion_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>testComunicacionPLC()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>378</x>
+     <y>440</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>235</x>
+     <y>430</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>AvanzarPistones_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>activarAvancePistones()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>780</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1024</x>
+     <y>382</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>RetrocederPistones_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>activarRetrocesoPistones()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>781</x>
+     <y>480</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1026</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ApagarPistones_pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MoringaMain</receiver>
+   <slot>apagarPistones()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>961</x>
+     <y>432</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1023</x>
+     <y>439</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>showConfigurar()</slot>
@@ -558,5 +930,13 @@
   <slot>guardarSeriales()</slot>
   <slot>testCamarasOn()</slot>
   <slot>testCamarasOff()</slot>
+  <slot>showConfigurarPLC()</slot>
+  <slot>exitConfigCamara()</slot>
+  <slot>exitConfigPLC()</slot>
+  <slot>saveIP()</slot>
+  <slot>testComunicacionPLC()</slot>
+  <slot>activarAvancePistones()</slot>
+  <slot>activarRetrocesoPistones()</slot>
+  <slot>apagarPistones()</slot>
  </slots>
 </ui>

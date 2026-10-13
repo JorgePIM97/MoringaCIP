@@ -1028,3 +1028,42 @@ geometría/umbral, CUDA explícito, exclusión 1/1, ausencia de órdenes derecha
 fallos de escritura/readback, interrupción y cierre de conexión ante errores.
 Se verificó sintaxis Python. No se ejecutaron cámara, GPU ni PLC reales.
 
+# Actualización 2026-10-13 — Modularización de la interfaz
+
+Se separó `main.py` en responsabilidades sin modificar la UI generada ni
+los nombres de slots conectados desde Qt Designer:
+
+- `controlador/navegation/screen_navegation.py`: recibe el QStackedWidget
+  visible y navega entre sus páginas. Se corrigió la creación previa de
+  una instancia independiente de `Ui_MoringaMain` sin widgets inicializados.
+- `controlador/vision_session.py`: posee y coordina hilos, señales y parada.
+  Cambia el receptor de frames entre prueba/operación sin reiniciar cámara;
+  desconectar cámara también detiene IA para evitar dejarla sin captura.
+- `controlador/configuracion/serial_repository.py`: persistencia JSON con
+  ruta relativa al proyecto, validación del serial y conservación de otras claves.
+- `vista/frame_presenter.py`: conversión BGR/RGB y presentación en QLabel.
+- `main.py`: ventana, slots de Designer, mensajes y delegación a los módulos.
+
+Se conserva intacta la implementación de visión/PLC de `IAThread`, incluyendo
+848×480, y=240, `device=0`, mando izquierdo y readback de consignas. El archivo
+`app/README.md` documenta responsabilidades y el flujo con Qt Designer.
+
+Validación: 13 pruebas satisfactorias, incluyendo cinco nuevas de módulos,
+slots reales de la ventana en modo offscreen, persistencia, cambio de receptor
+y orden/repetición de parada; se mantienen las ocho pruebas de control PLC.
+No se realizó actuación sobre cámara ni PLC reales.
+
+## Configuración persistente de IP del PLC — 2026-10-13
+
+Se implementó `saveIP()` para validar la IPv4 de `IngresarIP_lineEdit`
+y persistirla mediante `PLCRepository` en `app/plc.json`. Al abrir la
+ventana se recupera la IP en el campo y en `IP_label`. La IA requiere una
+IP guardada; `VisionSession` la entrega al constructor de `IAThread`,
+eliminando la dirección fija del hilo. Cambiar la IP guardada no modifica
+la conexión activa: se aplica al próximo inicio de IA.
+
+Validación: 16 pruebas satisfactorias, incluyendo guardado desde el botón
+Designer, recuperación al reabrir, rechazo de IPv4 inválida sin sobrescribir
+el valor previo y transferencia al hilo. Se conserva la regresión IA/PLC.
+Sin comunicación con PLC real durante las pruebas.
+
