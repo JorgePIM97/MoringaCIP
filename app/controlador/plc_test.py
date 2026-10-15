@@ -34,7 +34,8 @@ class PLCTest:
 
     @staticmethod
     def _validar(resultados):
-        if not isinstance(resultados, (list, tuple)):
+        # Tag es una NamedTuple: una respuesta individual no es un lote.
+        if hasattr(resultados, "value") or not isinstance(resultados, (list, tuple)):
             resultados = [resultados]
         if not resultados or not all(bool(r) for r in resultados):
             raise RuntimeError(f"El PLC rechazó la operación: {resultados}")

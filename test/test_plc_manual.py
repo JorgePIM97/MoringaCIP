@@ -4,7 +4,7 @@ import csv
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 from pathlib import Path
-from types import SimpleNamespace
+from pycomm3 import Tag
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "app"))
 from controlador.plc_test import PLCTest
@@ -23,7 +23,7 @@ class FakePLC:
         self.closed = True
 
     def read(self, *tags):
-        results = [SimpleNamespace(value=self.values[t]) for t in tags]
+        results = [Tag(t, self.values[t], "BOOL", None) for t in tags]
         return results if len(tags) > 1 else results[0]
 
     def write(self, tag, value):
@@ -31,12 +31,26 @@ class FakePLC:
         self.writes.append((tag, value))
         if self.values[PLCTest.AVANCE] and self.values[PLCTest.RETROCESO]:
             raise AssertionError("Mandos simultáneos")
-        return SimpleNamespace(value=value)
+        return Tag(tag, value, "BOOL", None)
 
 
 class ManualPLCTests(unittest.TestCase):
     def service(self, plc, **kwargs):
         return PLCTest("192.168.1.10", driver_factory=lambda ip: plc, **kwargs)
+
+    def test_single_false_tag_is_successful_response(self):
+        response = Tag(PLCTest.RETROCESO, False, "BOOL", None)
+        self.assertEqual(PLCTest._validar(response), [response])
+
+    def test_real_tag_error_is_rejected(self):
+        response = Tag(PLCTest.AVANCE, False, "BOOL", "Write failed")
+        for responses in (response, [response], (response,)):
+            with self.subTest(responses=responses), self.assertRaises(RuntimeError):
+                PLCTest._validar(responses)
+
+    def test_missing_tag_value_is_rejected(self):
+        with self.assertRaises(RuntimeError):
+            PLCTest._validar(Tag(PLCTest.AVANCE, None, "BOOL", None))
 
     def test_connection_does_not_write(self):
         plc = FakePLC()
